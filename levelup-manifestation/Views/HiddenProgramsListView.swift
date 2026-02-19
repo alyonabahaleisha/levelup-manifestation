@@ -1,5 +1,14 @@
 import SwiftUI
 
+// ANDROID: HiddenProgramsScreen.kt
+//   val programs = remember { HiddenProgram.programs(for = area) }
+//   var selectedProgram by remember { mutableStateOf<HiddenProgram?>(null) }
+//   AnimatedContent(selectedProgram) { program ->
+//       if (program == null) ProgramListContent(programs, onSelect = { selectedProgram = it }, onBack)
+//       else ProgramRewriteScreen(program = program, onBack = { selectedProgram = null })
+//   }
+//   ProgramListContent: LazyColumn { items(programs) { ProgramRow(it, onClick) } }
+
 struct HiddenProgramsListView: View {
     @EnvironmentObject var theme: ThemeManager
     let area: LifeArea

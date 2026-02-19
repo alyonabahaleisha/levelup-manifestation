@@ -1,5 +1,14 @@
 import SwiftUI
 
+// ANDROID: AffirmationsScreen.kt
+//   val pagerState = rememberPagerState { affirmations.size }
+//   VerticalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
+//       AffirmationCard(affirmation = affirmations[page])
+//   }
+//   LaunchedEffect(pagerState.currentPage) { haptics.performHapticFeedback(TextHandleMove) }
+//   Floating filter bar: LazyRow at top of Box — same chip style as GlassChip
+//   buildFeed() → same logic, observe savedPrograms.saved from SavedProgramsViewModel
+
 struct AffirmationsFeedView: View {
     @EnvironmentObject var theme: ThemeManager
     @EnvironmentObject var savedPrograms: SavedProgramsStore

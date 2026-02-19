@@ -1,6 +1,9 @@
 import Foundation
 import Combine
 
+// ANDROID: data class Affirmation(val id: String = UUID.randomUUID().toString(),
+//   val text: String, val area: LifeArea, val isPersonal: Boolean = false)
+
 struct Affirmation: Identifiable {
     var id: UUID = UUID()
     let text: String
@@ -9,6 +12,12 @@ struct Affirmation: Identifiable {
 }
 
 // MARK: - Saved Programs Store
+// ANDROID: SavedProgramsViewModel.kt (HiltViewModel)
+//   val saved: StateFlow<List<Affirmation>> backed by DataStore JSON
+//   fun save(program: HiddenProgram) — prepend Affirmation(isPersonal=true) + persist
+//   fun isSaved(program: HiddenProgram): Boolean
+//   Persist as JSON string list in DataStore<Preferences>: SAVED_PROGRAMS_KEY
+//   Use Gson or kotlinx.serialization to serialize/deserialize List<Affirmation>
 
 class SavedProgramsStore: ObservableObject {
     @Published var saved: [Affirmation] = []

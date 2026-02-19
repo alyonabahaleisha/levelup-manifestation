@@ -1,5 +1,13 @@
 import Foundation
 
+// ANDROID: data class HiddenProgram(
+//   val id: String = UUID.randomUUID().toString(),
+//   val limiting: String,
+//   val rewrite: String,
+//   val area: LifeArea
+// )
+// Port all static program data to a Kotlin object: object ProgramContent { val all: List<HiddenProgram> }
+
 struct HiddenProgram: Identifiable {
     let id = UUID()
     let limiting: String

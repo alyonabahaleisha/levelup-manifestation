@@ -1,6 +1,8 @@
 import SwiftUI
 
 // MARK: - Life Area
+// ANDROID: enum class LifeArea(val label: String, val emoji: String)
+//   Port all 10 cases directly — same raw values, same emoji
 
 enum LifeArea: String, CaseIterable, Identifiable {
     case money = "Money"
@@ -33,6 +35,11 @@ enum LifeArea: String, CaseIterable, Identifiable {
 }
 
 // MARK: - Tone Theme
+// ANDROID: enum class ToneTheme(val label: String) with:
+//   val gradientColors: List<Color>  (same RGB values as Long hex e.g. 0xFF240D24)
+//   val accent: Color
+//   val glowColor: Color
+//   Store selected tone in DataStore: dataStore.edit { it[TONE_KEY] = tone.name }
 
 enum ToneTheme: String, CaseIterable, Identifiable {
     case softFeminine = "Soft Feminine"
@@ -41,6 +48,7 @@ enum ToneTheme: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    // ANDROID: Brush.linearGradient(colors = listOf(...)) with same RGB values as 0xFFRRGGBB
     var gradient: [Color] {
         switch self {
         case .softFeminine:
@@ -64,6 +72,7 @@ enum ToneTheme: String, CaseIterable, Identifiable {
         }
     }
 
+    // ANDROID: accent: Color (same value as 0xFFRRGGBB hex)
     var accent: Color {
         switch self {
         case .softFeminine: return Color(red: 0.92, green: 0.68, blue: 0.75)
@@ -72,6 +81,7 @@ enum ToneTheme: String, CaseIterable, Identifiable {
         }
     }
 
+    // ANDROID: glowColor = accent.copy(alpha = 0.25f)
     var glowColor: Color {
         switch self {
         case .softFeminine: return Color(red: 0.92, green: 0.68, blue: 0.75).opacity(0.25)
@@ -82,6 +92,7 @@ enum ToneTheme: String, CaseIterable, Identifiable {
 }
 
 // MARK: - App Tab
+// ANDROID: sealed class AppTab { object Affirmations; object Reprogram }
 
 enum AppTab {
     case affirmations
@@ -89,6 +100,10 @@ enum AppTab {
 }
 
 // MARK: - Pressable Button Style
+// ANDROID: Custom Modifier — fun Modifier.pressable(scale: Float = 0.96f): Modifier
+//   Use interactionSource + collectIsPressedAsState()
+//   graphicsLayer { scaleX = if (pressed) scale else 1f; scaleY = ... }
+//   animate with spring(stiffness = Spring.StiffnessMediumLow)
 
 struct PressableButtonStyle: ButtonStyle {
     var scale: CGFloat = 0.96
@@ -106,6 +121,19 @@ extension View {
 }
 
 // MARK: - Glass Modifiers
+// ANDROID: @Composable fun GlassCard(cornerRadius: Dp = 24.dp, content: @Composable () -> Unit)
+//   Box(Modifier
+//     .clip(RoundedCornerShape(cornerRadius))
+//     .background(Color.White.copy(alpha = 0.07f))  // replaces ultraThinMaterial
+//     .border(1.dp, Color.White.copy(alpha = 0.13f), RoundedCornerShape(cornerRadius))
+//   ) { content() }
+//
+// ANDROID: @Composable fun GlassChip(isSelected: Boolean, accentColor: Color, content: @Composable () -> Unit)
+//   Box(Modifier
+//     .clip(CircleShape)  // Capsule
+//     .background(if (isSelected) accentColor.copy(0.18f) else Color.White.copy(0.06f))
+//     .border(1.dp, if (isSelected) accentColor.copy(0.6f) else Color.White.copy(0.14f), CircleShape)
+//   ) { content() }
 
 extension View {
     func glassCard(cornerRadius: CGFloat = 24) -> some View {

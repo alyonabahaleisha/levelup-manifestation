@@ -1,5 +1,19 @@
 import SwiftUI
 
+// ANDROID: SplashScreen.kt
+//   Box(Modifier.fillMaxSize().background(Brush.linearGradient(theme.gradientColors))) {
+//       ParticlesView()
+//       Column(horizontalAlignment = CenterHorizontally, verticalArrangement = Center) {
+//           val logoScale by animateFloatAsState(if (appeared) 1f else 0.8f, spring())
+//           val logoAlpha by animateFloatAsState(if (appeared) 1f else 0f)
+//           Text("✦", fontSize = 56.sp, modifier = Modifier.graphicsLayer { scaleX = logoScale; scaleY = logoScale; alpha = logoAlpha })
+//           Text("LevelUp", letterSpacing = 8.sp, ...)
+//           Text("reprogram your mind", letterSpacing = 3.sp, ...)
+//       }
+//   }
+//   LaunchedEffect(Unit) { delay(100); appeared = true }
+//   Use Android 12+ SplashScreen API (core-splashscreen) for the system splash
+
 struct SplashScreenView: View {
     @State private var logoOpacity: Double = 0
     @State private var logoScale: Double = 0.8

@@ -1,5 +1,19 @@
 import SwiftUI
 
+// ANDROID: GlassTabBar.kt
+//   Row(Modifier.clip(CircleShape).background(Color.Black.copy(0.25f))
+//               .border(1.dp, Color.White.copy(0.12f), CircleShape)
+//               .shadow(24.dp, CircleShape)
+//               .padding(horizontal = 8.dp, vertical = 8.dp)) {
+//       TabButton(tab = AppTab.Affirmations, icon = Icons.Outlined.FormatQuote, label = "Affirm")
+//       TabButton(tab = AppTab.Reprogram, icon = Icons.Outlined.Refresh, label = "Reprogram")
+//       Divider(Modifier.width(1.dp).height(32.dp), color = Color.White.copy(0.12f))
+//       SettingsButton(onClick = onSettings)
+//   }
+//   TabButton: selection haptic via LocalHapticFeedback.current.performHapticFeedback(SelectionChanged)
+//   Scale animation: animateFloatAsState(if selected 1.05f else 1f, spring())
+//   Icon tint: if selected theme.accent else Color.White.copy(0.4f)
+
 struct SideTabBar: View {
     @EnvironmentObject var theme: ThemeManager
     @Binding var selectedTab: AppTab

@@ -1,5 +1,14 @@
 import SwiftUI
 
+// ANDROID: SettingsScreen.kt (shown as ModalBottomSheet)
+//   Theme section: LazyColumn { items(ToneTheme.values()) { ToneRow(it, isSelected, onSelect) } }
+//   Notifications section:
+//     Switch(checked = isEnabled, onCheckedChange = { vm.toggle(it) }, colors = SwitchDefaults.colors(checkedThumbColor = accent))
+//     if (isEnabled):
+//       TimePickerRow(startTime, endTime, onStartChange, onEndChange)  — use TimePickerDialog
+//       IntervalChips: Row { intervalOptions.forEach { ChipButton(it, isSelected, onClick) } }
+//   Dismiss: BottomSheetScaffold onDismissRequest
+
 private let intervalOptions: [(label: String, minutes: Int)] = [
     ("15m", 15), ("30m", 30), ("1h", 60), ("2h", 120), ("3h", 180)
 ]

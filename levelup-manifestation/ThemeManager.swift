@@ -3,16 +3,29 @@ import Combine
 import UserNotifications
 
 // MARK: - Notification Manager
+// ANDROID: NotificationViewModel.kt (HiltViewModel)
+//   Uses NotificationManagerCompat + AlarmManager for scheduling
+//   Persist settings with DataStore<Preferences>:
+//     NOTIF_ENABLED, NOTIF_START_HOUR, NOTIF_START_MIN, NOTIF_END_HOUR, NOTIF_END_MIN, NOTIF_INTERVAL
+//   requestPermissionAndEnable() → ActivityResultLauncher<String> for POST_NOTIFICATIONS permission
+//   scheduleNotifications() → AlarmManager.setRepeating() per computed time slot
+//   disable() → AlarmManager.cancel() for all pending intents + NotificationManagerCompat.cancelAll()
 
 class NotificationManager: ObservableObject {
 
+    // ANDROID: val isEnabled: StateFlow<Boolean>
     @Published var isEnabled: Bool = false
+    // ANDROID: val startTime: StateFlow<LocalTime> (default 09:00)
     @Published var startTime: Date = Calendar.current.date(from: DateComponents(hour: 9, minute: 0)) ?? Date()
+    // ANDROID: val endTime: StateFlow<LocalTime> (default 18:00)
     @Published var endTime: Date   = Calendar.current.date(from: DateComponents(hour: 18, minute: 0)) ?? Date()
-    @Published var intervalMinutes: Int = 60  // 15, 30, 60, 120, 180
+    // ANDROID: val intervalMinutes: StateFlow<Int> — options: 15, 30, 60, 120, 180
+    @Published var intervalMinutes: Int = 60
 
     init() { loadSettings() }
 
+    // ANDROID: fun requestPermissionAndEnable() — launch POST_NOTIFICATIONS permission request
+    //   on granted: isEnabled = true, saveSettings(), scheduleNotifications()
     func requestPermissionAndEnable() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
             DispatchQueue.main.async {
@@ -23,12 +36,21 @@ class NotificationManager: ObservableObject {
         }
     }
 
+    // ANDROID: fun disable() — cancel all AlarmManager intents, isEnabled = false, saveSettings()
     func disable() {
         isEnabled = false
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         saveSettings()
     }
 
+    // ANDROID: fun scheduleNotifications()
+    //   val times = computedTimes()
+    //   times.forEachIndexed { i, (hour, min) ->
+    //     val intent = Intent(context, AffirmationReceiver::class.java)
+    //     val pendingIntent = PendingIntent.getBroadcast(context, i, intent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE)
+    //     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+    //   }
+    //   AffirmationReceiver is a BroadcastReceiver that posts the notification via NotificationManagerCompat
     func scheduleNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         guard isEnabled else { return }
@@ -46,6 +68,11 @@ class NotificationManager: ObservableObject {
         saveSettings()
     }
 
+    // ANDROID: fun computedTimes(): List<Pair<Int, Int>>  (hour, minute pairs)
+    //   val startMin = startHour * 60 + startMinute
+    //   val endMin = endHour * 60 + endMinute
+    //   generateSequence(startMin) { it + intervalMinutes }.takeWhile { it <= endMin }.take(60)
+    //     .map { Pair(it / 60, it % 60) }.toList()
     func computedTimes() -> [Date] {
         let cal = Calendar.current
         let s = cal.dateComponents([.hour, .minute], from: startTime)
@@ -65,6 +92,7 @@ class NotificationManager: ObservableObject {
         return times
     }
 
+    // ANDROID: private fun saveSettings() — DataStore<Preferences>.edit { prefs -> ... }
     private func saveSettings() {
         let ud = UserDefaults.standard
         ud.set(isEnabled, forKey: "notif_enabled")
@@ -73,6 +101,7 @@ class NotificationManager: ObservableObject {
         ud.set(intervalMinutes, forKey: "notif_interval")
     }
 
+    // ANDROID: private fun loadSettings() — dataStore.data.first() in viewModelScope
     private func loadSettings() {
         let ud = UserDefaults.standard
         isEnabled = ud.bool(forKey: "notif_enabled")
@@ -88,8 +117,13 @@ class NotificationManager: ObservableObject {
 }
 
 // MARK: - Theme Manager
+// ANDROID: ThemeViewModel.kt (HiltViewModel)
+//   val tone: StateFlow<ToneTheme> = dataStore.data.map { it[TONE_KEY] ?: ToneTheme.SOFT_FEMININE }
+//   fun setTone(newTone: ToneTheme) — dataStore.edit { it[TONE_KEY] = newTone.name }
+//   Provide theme via CompositionLocal: LocalTheme = staticCompositionLocalOf { ToneTheme.SOFT_FEMININE }
 
 class ThemeManager: ObservableObject {
+    // ANDROID: val tone = MutableStateFlow(ToneTheme.SOFT_FEMININE) backed by DataStore
     @Published var tone: ToneTheme = .softFeminine
 
     init() {
@@ -99,6 +133,7 @@ class ThemeManager: ObservableObject {
         }
     }
 
+    // ANDROID: fun setTone(newTone: ToneTheme) — update StateFlow + persist to DataStore
     func setTone(_ newTone: ToneTheme) {
         withAnimation(.easeInOut(duration: 0.5)) {
             tone = newTone

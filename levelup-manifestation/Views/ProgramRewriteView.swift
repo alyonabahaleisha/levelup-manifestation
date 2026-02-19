@@ -1,5 +1,14 @@
 import SwiftUI
 
+// ANDROID: ProgramRewriteScreen.kt
+//   val isSaved by savedProgramsViewModel.isSaved(program).collectAsState()
+//   var showRewrite by remember { mutableStateOf(false) }
+//   LaunchedEffect(Unit) { delay(400); showRewrite = true }
+//   Old belief: Text with TextDecoration.LineThrough, animate alpha with animateFloatAsState
+//   New belief card: animate border with animateColorAsState, shadow with animateDpAsState
+//   Save button: savedProgramsViewModel.save(program) + success haptic + pulse animation
+//   Pulse ring: animateFloatAsState for scale + alpha, triggered on save
+
 struct ProgramRewriteView: View {
     @EnvironmentObject var theme: ThemeManager
     @EnvironmentObject var savedPrograms: SavedProgramsStore

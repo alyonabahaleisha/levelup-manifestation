@@ -1,5 +1,14 @@
 import SwiftUI
 
+// ANDROID: ReprogramScreen.kt
+//   var selectedArea by remember { mutableStateOf<LifeArea?>(null) }
+//   AnimatedContent(selectedArea) { area ->
+//       if (area == null) AreaSelectionGrid(onAreaSelected = { selectedArea = it })
+//       else HiddenProgramsScreen(area = area, onBack = { selectedArea = null })
+//   }
+//   AreaSelectionGrid: LazyVerticalGrid(GridCells.Fixed(2), ...) { AreaCard(area, onClick) }
+//   Impact haptic: haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+
 struct ReprogramView: View {
     @EnvironmentObject var theme: ThemeManager
     @State private var selectedArea: LifeArea? = nil
