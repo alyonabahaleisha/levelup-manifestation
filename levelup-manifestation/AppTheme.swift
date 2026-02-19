@@ -130,15 +130,4 @@ extension View {
             )
     }
 
-    func glassPill() -> some View {
-        self
-            .background(.ultraThinMaterial)
-            .background(Color.white.opacity(0.06))
-            .clipShape(Capsule())
-            .overlay(
-                Capsule()
-                    .stroke(Color.white.opacity(0.14), lineWidth: 1)
-            )
-            .shadow(color: .black.opacity(0.3), radius: 16, x: 0, y: 8)
-    }
 }

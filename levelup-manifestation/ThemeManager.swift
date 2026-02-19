@@ -106,11 +106,4 @@ class ThemeManager: ObservableObject {
         UserDefaults.standard.set(newTone.rawValue, forKey: "selectedTone")
     }
 
-    var gradient: LinearGradient {
-        LinearGradient(
-            colors: tone.gradient,
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-    }
 }

@@ -16,16 +16,11 @@
 		806580702F465A3300749AD3 /* ProgramRewriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065806C2F465A3300749AD3 /* ProgramRewriteView.swift */; };
 		806580712F465A3300749AD3 /* HiddenProgramsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065806B2F465A3300749AD3 /* HiddenProgramsListView.swift */; };
 		806580722F465A3400749AD3 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580732F465A3400749AD3 /* SplashScreenView.swift */; };
-		806580742F465A3400749AD3 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580752F465A3400749AD3 /* AppIconView.swift */; };
 		806580762F465A3500749AD3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580772F465A3500749AD3 /* SettingsView.swift */; };
 		A1000001000000000000001 /* levelup_manifestationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002000000000000001 /* levelup_manifestationApp.swift */; };
 		A1000003000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000004000000000000001 /* ContentView.swift */; };
 		A1000005000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000006000000000000001 /* Assets.xcassets */; };
-		A1000022000000000000001 /* MeditationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000023000000000000001 /* MeditationMessage.swift */; };
-		A1000024000000000000001 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000025000000000000001 /* ChatMessage.swift */; };
 		A1000026000000000000001 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000027000000000000001 /* ParticlesView.swift */; };
-		A1000028000000000000001 /* MeditationCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000029000000000000001 /* MeditationCardsView.swift */; };
-		A1000030000000000000001 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000031000000000000001 /* ChatView.swift */; };
 		A1000032000000000000001 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000033000000000000001 /* MainTabView.swift */; };
 		A1000036000000000000001 /* StatusBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000037000000000000001 /* StatusBarModifier.swift */; };
 		A1000038000000000000001 /* SideTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000039000000000000001 /* SideTabBar.swift */; };
@@ -42,17 +37,12 @@
 		8065806C2F465A3300749AD3 /* ProgramRewriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramRewriteView.swift; sourceTree = "<group>"; };
 		8065806D2F465A3300749AD3 /* ReprogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprogramView.swift; sourceTree = "<group>"; };
 		806580732F465A3400749AD3 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		806580752F465A3400749AD3 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		806580772F465A3500749AD3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A1000002000000000000001 /* levelup_manifestationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = levelup_manifestationApp.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000006000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1000007000000000000001 /* levelup-manifestation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "levelup-manifestation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1000023000000000000001 /* MeditationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationMessage.swift; sourceTree = "<group>"; };
-		A1000025000000000000001 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		A1000027000000000000001 /* ParticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
-		A1000029000000000000001 /* MeditationCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationCardsView.swift; sourceTree = "<group>"; };
-		A1000031000000000000001 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		A1000033000000000000001 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		A1000037000000000000001 /* StatusBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarModifier.swift; sourceTree = "<group>"; };
 		A1000039000000000000001 /* SideTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTabBar.swift; sourceTree = "<group>"; };
@@ -87,7 +77,6 @@
 				806580632F4659FD00749AD3 /* AppTheme.swift */,
 				806580642F4659FD00749AD3 /* ProgramContent.swift */,
 				806580652F4659FD00749AD3 /* ThemeManager.swift */,
-				A1000034000000000000001 /* Models */,
 				A1000035000000000000001 /* Views */,
 				A1000006000000000000001 /* Assets.xcassets */,
 			);
@@ -102,15 +91,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A1000034000000000000001 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A1000023000000000000001 /* MeditationMessage.swift */,
-				A1000025000000000000001 /* ChatMessage.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		A1000035000000000000001 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,11 +99,8 @@
 				8065806C2F465A3300749AD3 /* ProgramRewriteView.swift */,
 				8065806D2F465A3300749AD3 /* ReprogramView.swift */,
 				806580732F465A3400749AD3 /* SplashScreenView.swift */,
-				806580752F465A3400749AD3 /* AppIconView.swift */,
 				806580772F465A3500749AD3 /* SettingsView.swift */,
 				A1000027000000000000001 /* ParticlesView.swift */,
-				A1000029000000000000001 /* MeditationCardsView.swift */,
-				A1000031000000000000001 /* ChatView.swift */,
 				A1000033000000000000001 /* MainTabView.swift */,
 				A1000037000000000000001 /* StatusBarModifier.swift */,
 				A1000039000000000000001 /* SideTabBar.swift */,
@@ -209,17 +186,12 @@
 				806580692F4659FE00749AD3 /* AppTheme.swift in Sources */,
 				A1000003000000000000001 /* ContentView.swift in Sources */,
 				A1000001000000000000001 /* levelup_manifestationApp.swift in Sources */,
-				A1000022000000000000001 /* MeditationMessage.swift in Sources */,
-				A1000024000000000000001 /* ChatMessage.swift in Sources */,
 				A1000026000000000000001 /* ParticlesView.swift in Sources */,
-				A1000028000000000000001 /* MeditationCardsView.swift in Sources */,
-				A1000030000000000000001 /* ChatView.swift in Sources */,
 				8065806E2F465A3300749AD3 /* ReprogramView.swift in Sources */,
 				8065806F2F465A3300749AD3 /* AffirmationsFeedView.swift in Sources */,
 				806580702F465A3300749AD3 /* ProgramRewriteView.swift in Sources */,
 				806580712F465A3300749AD3 /* HiddenProgramsListView.swift in Sources */,
 				806580722F465A3400749AD3 /* SplashScreenView.swift in Sources */,
-				806580742F465A3400749AD3 /* AppIconView.swift in Sources */,
 				806580762F465A3500749AD3 /* SettingsView.swift in Sources */,
 				A1000032000000000000001 /* MainTabView.swift in Sources */,
 				A1000036000000000000001 /* StatusBarModifier.swift in Sources */,
