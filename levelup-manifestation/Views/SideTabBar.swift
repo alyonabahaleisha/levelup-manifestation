@@ -3,11 +3,32 @@ import SwiftUI
 struct SideTabBar: View {
     @EnvironmentObject var theme: ThemeManager
     @Binding var selectedTab: AppTab
+    let onSettings: () -> Void
 
     var body: some View {
         HStack(spacing: 4) {
             tabButton(tab: .affirmations, icon: "quote.bubble", label: "Affirm")
             tabButton(tab: .reprogram, icon: "arrow.clockwise.circle", label: "Reprogram")
+
+            // Divider
+            Rectangle()
+                .fill(.white.opacity(0.12))
+                .frame(width: 1, height: 32)
+                .padding(.horizontal, 4)
+
+            // Settings
+            Button(action: onSettings) {
+                VStack(spacing: 4) {
+                    Image(systemName: "gearshape")
+                        .font(.system(size: 20, weight: .light))
+                        .foregroundStyle(.white.opacity(0.4))
+                        .frame(height: 24)
+                    Text("Settings")
+                        .font(.system(size: 10, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.4))
+                }
+                .frame(width: 72, height: 52)
+            }
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 8)
@@ -39,7 +60,7 @@ struct SideTabBar: View {
             }
             .scaleEffect(isSelected ? 1.05 : 1.0)
             .animation(.spring(response: 0.25, dampingFraction: 0.65), value: isSelected)
-            .frame(width: 96, height: 52)
+            .frame(width: 88, height: 52)
             .background(
                 Capsule()
                     .fill(isSelected ? theme.tone.accent.opacity(0.14) : Color.clear)

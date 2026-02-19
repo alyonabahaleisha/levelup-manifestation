@@ -2,11 +2,12 @@ import SwiftUI
 
 struct ProgramRewriteView: View {
     @EnvironmentObject var theme: ThemeManager
+    @EnvironmentObject var savedPrograms: SavedProgramsStore
     let program: HiddenProgram
     let onBack: () -> Void
 
     @State private var showRewrite = false
-    @State private var saved = false
+    private var saved: Bool { savedPrograms.isSaved(program) }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -88,9 +89,7 @@ struct ProgramRewriteView: View {
                 Button {
                     let notification = UINotificationFeedbackGenerator()
                     notification.notificationOccurred(.success)
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
-                        saved = true
-                    }
+                    savedPrograms.save(program)
                 } label: {
                     HStack(spacing: 10) {
                         Image(systemName: saved ? "checkmark.circle.fill" : "sparkles")

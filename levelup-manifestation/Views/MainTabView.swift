@@ -3,6 +3,7 @@ import SwiftUI
 struct MainTabView: View {
     @EnvironmentObject var theme: ThemeManager
     @State private var selectedTab: AppTab = .affirmations
+    @State private var showSettings = false
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -22,10 +23,13 @@ struct MainTabView: View {
             .ignoresSafeArea()
 
             // Glass tab bar — bottom center
-            SideTabBar(selectedTab: $selectedTab)
+            SideTabBar(selectedTab: $selectedTab, onSettings: { showSettings = true })
                 .padding(.bottom, 36)
         }
         .ignoresSafeArea()
         .statusBarStyle(.lightContent)
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
     }
 }

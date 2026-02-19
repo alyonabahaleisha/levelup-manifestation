@@ -2,9 +2,9 @@ import SwiftUI
 
 struct AffirmationsFeedView: View {
     @EnvironmentObject var theme: ThemeManager
-    @State private var affirmations: [Affirmation] = Affirmation.feed()
+    @EnvironmentObject var savedPrograms: SavedProgramsStore
+    @State private var affirmations: [Affirmation] = []
     @State private var selectedArea: LifeArea? = nil
-    @State private var likedIds: Set<UUID> = []
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -12,12 +12,8 @@ struct AffirmationsFeedView: View {
             ScrollView(.vertical) {
                 LazyVStack(spacing: 0) {
                     ForEach(affirmations) { affirmation in
-                        AffirmationCard(
-                            affirmation: affirmation,
-                            isLiked: likedIds.contains(affirmation.id),
-                            onLike: { toggleLike(affirmation) }
-                        )
-                        .containerRelativeFrame([.horizontal, .vertical])
+                        AffirmationCard(affirmation: affirmation)
+                            .containerRelativeFrame([.horizontal, .vertical])
                     }
                 }
                 .scrollTargetLayout()
@@ -31,27 +27,29 @@ struct AffirmationsFeedView: View {
                 .padding(.top, 60)
                 .padding(.horizontal, 16)
         }
+        .onAppear {
+            affirmations = buildFeed(for: selectedArea)
+        }
         .onChange(of: selectedArea) { _, area in
             withAnimation(.easeInOut(duration: 0.3)) {
-                affirmations = Affirmation.feed(for: area.map { [$0] } ?? [])
+                affirmations = buildFeed(for: area)
             }
         }
+        .onChange(of: savedPrograms.saved.count) { _, _ in
+            affirmations = buildFeed(for: selectedArea)
+        }
         .onChange(of: theme.tone) { _, _ in
-            // Re-shuffle when tone changes for fresh feel
-            affirmations = Affirmation.feed(for: selectedArea.map { [$0] } ?? [])
+            affirmations = buildFeed(for: selectedArea)
         }
     }
 
-    private func toggleLike(_ affirmation: Affirmation) {
-        let impact = UIImpactFeedbackGenerator(style: .medium)
-        impact.impactOccurred()
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
-            if likedIds.contains(affirmation.id) {
-                likedIds.remove(affirmation.id)
-            } else {
-                likedIds.insert(affirmation.id)
-            }
-        }
+    private func buildFeed(for area: LifeArea?) -> [Affirmation] {
+        let areas = area.map { [$0] } ?? []
+        let personal = areas.isEmpty
+            ? savedPrograms.saved
+            : savedPrograms.saved.filter { areas.contains($0.area) }
+        let regular = Affirmation.feed(for: areas)
+        return personal + regular
     }
 }
 
@@ -60,8 +58,6 @@ struct AffirmationsFeedView: View {
 struct AffirmationCard: View {
     @EnvironmentObject var theme: ThemeManager
     let affirmation: Affirmation
-    let isLiked: Bool
-    let onLike: () -> Void
 
     var body: some View {
         ZStack {
@@ -79,14 +75,24 @@ struct AffirmationCard: View {
             VStack(spacing: 0) {
                 Spacer()
 
-                // Area pill — top center
-                Text("\(affirmation.area.emoji)  \(affirmation.area.rawValue)")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(.white.opacity(0.75))
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 7)
-                    .glassChip()
-                    .padding(.bottom, 28)
+                // Area / identity pill
+                if affirmation.isPersonal {
+                    Text("✦  Your Identity")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(theme.tone.accent)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 7)
+                        .glassChip(isSelected: true, accentColor: theme.tone.accent)
+                        .padding(.bottom, 28)
+                } else {
+                    Text("\(affirmation.area.emoji)  \(affirmation.area.rawValue)")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.75))
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 7)
+                        .glassChip()
+                        .padding(.bottom, 28)
+                }
 
                 // Glass affirmation card
                 Text(affirmation.text)
@@ -98,23 +104,13 @@ struct AffirmationCard: View {
                     .padding(.vertical, 40)
                     .glassCard(cornerRadius: 28)
                     .padding(.horizontal, 24)
-                    .shadow(color: theme.tone.glowColor, radius: 30, x: 0, y: 0)
+                    .shadow(
+                        color: affirmation.isPersonal ? theme.tone.accent.opacity(0.4) : theme.tone.glowColor,
+                        radius: affirmation.isPersonal ? 40 : 30,
+                        x: 0, y: 0
+                    )
 
                 Spacer()
-
-                // Like button
-                HStack {
-                    Spacer()
-                    Button(action: onLike) {
-                        Image(systemName: isLiked ? "heart.fill" : "heart")
-                            .font(.system(size: 28, weight: .light))
-                            .foregroundStyle(isLiked ? Color.pink : .white.opacity(0.55))
-                            .scaleEffect(isLiked ? 1.2 : 1.0)
-                            .animation(.spring(response: 0.3, dampingFraction: 0.45), value: isLiked)
-                    }
-                    .padding(.trailing, 32)
-                }
-                .padding(.bottom, 140)
             }
         }
     }

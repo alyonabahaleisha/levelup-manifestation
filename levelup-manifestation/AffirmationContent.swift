@@ -1,9 +1,48 @@
 import Foundation
+import Combine
 
 struct Affirmation: Identifiable {
-    let id = UUID()
+    var id: UUID = UUID()
     let text: String
     let area: LifeArea
+    var isPersonal: Bool = false
+}
+
+// MARK: - Saved Programs Store
+
+class SavedProgramsStore: ObservableObject {
+    @Published var saved: [Affirmation] = []
+
+    private let key = "saved_programs_v1"
+
+    init() { load() }
+
+    func save(_ program: HiddenProgram) {
+        guard !isSaved(program) else { return }
+        var affirmation = Affirmation(text: program.rewrite, area: program.area)
+        affirmation.isPersonal = true
+        saved.insert(affirmation, at: 0)
+        persist()
+    }
+
+    func isSaved(_ program: HiddenProgram) -> Bool {
+        saved.contains { $0.text == program.rewrite }
+    }
+
+    private func persist() {
+        let data = saved.map { ["id": $0.id.uuidString, "text": $0.text, "area": $0.area.rawValue] }
+        UserDefaults.standard.set(data, forKey: key)
+    }
+
+    private func load() {
+        guard let data = UserDefaults.standard.array(forKey: key) as? [[String: String]] else { return }
+        saved = data.compactMap { dict in
+            guard let idStr = dict["id"], let id = UUID(uuidString: idStr),
+                  let text = dict["text"], let areaRaw = dict["area"],
+                  let area = LifeArea(rawValue: areaRaw) else { return nil }
+            return Affirmation(id: id, text: text, area: area, isPersonal: true)
+        }
+    }
 }
 
 extension Affirmation {
