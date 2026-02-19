@@ -5,6 +5,10 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
+            // Immediate dark background — prevents white flash between system launch screen and first SwiftUI render
+            Color(red: 0.14, green: 0.05, blue: 0.14)
+                .ignoresSafeArea()
+
             MainTabView()
                 .opacity(showSplash ? 0 : 1)
 
