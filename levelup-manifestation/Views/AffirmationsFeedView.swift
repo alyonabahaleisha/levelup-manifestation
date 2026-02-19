@@ -5,6 +5,7 @@ struct AffirmationsFeedView: View {
     @EnvironmentObject var savedPrograms: SavedProgramsStore
     @State private var affirmations: [Affirmation] = []
     @State private var selectedArea: LifeArea? = nil
+    @State private var currentPage: UUID?
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -14,12 +15,17 @@ struct AffirmationsFeedView: View {
                     ForEach(affirmations) { affirmation in
                         AffirmationCard(affirmation: affirmation)
                             .containerRelativeFrame([.horizontal, .vertical])
+                            .id(affirmation.id)
                     }
                 }
                 .scrollTargetLayout()
             }
             .scrollIndicators(.hidden)
             .scrollTargetBehavior(.paging)
+            .scrollPosition(id: $currentPage)
+            .onChange(of: currentPage) { _, _ in
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            }
             .ignoresSafeArea()
 
             // Floating filter bar
@@ -58,6 +64,7 @@ struct AffirmationsFeedView: View {
 struct AffirmationCard: View {
     @EnvironmentObject var theme: ThemeManager
     let affirmation: Affirmation
+    @State private var appeared = false
 
     var body: some View {
         ZStack {
@@ -76,23 +83,26 @@ struct AffirmationCard: View {
                 Spacer()
 
                 // Area / identity pill
-                if affirmation.isPersonal {
-                    Text("✦  Your Identity")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(theme.tone.accent)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 7)
-                        .glassChip(isSelected: true, accentColor: theme.tone.accent)
-                        .padding(.bottom, 28)
-                } else {
-                    Text("\(affirmation.area.emoji)  \(affirmation.area.rawValue)")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(.white.opacity(0.75))
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 7)
-                        .glassChip()
-                        .padding(.bottom, 28)
+                Group {
+                    if affirmation.isPersonal {
+                        Text("✦  Your Identity")
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(theme.tone.accent)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 7)
+                            .glassChip(isSelected: true, accentColor: theme.tone.accent)
+                    } else {
+                        Text("\(affirmation.area.emoji)  \(affirmation.area.rawValue)")
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(.white.opacity(0.75))
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 7)
+                            .glassChip()
+                    }
                 }
+                .padding(.bottom, 28)
+                .offset(y: appeared ? 0 : 16)
+                .opacity(appeared ? 1 : 0)
 
                 // Glass affirmation card
                 Text(affirmation.text)
@@ -109,9 +119,18 @@ struct AffirmationCard: View {
                         radius: affirmation.isPersonal ? 40 : 30,
                         x: 0, y: 0
                     )
+                    .offset(y: appeared ? 0 : 24)
+                    .opacity(appeared ? 1 : 0)
 
                 Spacer()
             }
+            .onAppear {
+                appeared = false
+                withAnimation(.spring(response: 0.55, dampingFraction: 0.78).delay(0.05)) {
+                    appeared = true
+                }
+            }
+            .onDisappear { appeared = false }
         }
     }
 }
@@ -127,6 +146,7 @@ struct LifeAreaFilterBar: View {
             HStack(spacing: 8) {
                 // "All" chip
                 Button {
+                    UISelectionFeedbackGenerator().selectionChanged()
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                         selected = nil
                     }
@@ -138,9 +158,11 @@ struct LifeAreaFilterBar: View {
                         .padding(.vertical, 8)
                         .glassChip(isSelected: selected == nil, accentColor: theme.tone.accent)
                 }
+                .pressable()
 
                 ForEach(LifeArea.allCases) { area in
                     Button {
+                        UISelectionFeedbackGenerator().selectionChanged()
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             selected = selected == area ? nil : area
                         }
@@ -152,6 +174,7 @@ struct LifeAreaFilterBar: View {
                             .padding(.vertical, 8)
                             .glassChip(isSelected: selected == area, accentColor: theme.tone.accent)
                     }
+                    .pressable()
                 }
             }
             .padding(.horizontal, 4)

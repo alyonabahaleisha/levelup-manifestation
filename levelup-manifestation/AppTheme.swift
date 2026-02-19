@@ -88,6 +88,23 @@ enum AppTab {
     case reprogram
 }
 
+// MARK: - Pressable Button Style
+
+struct PressableButtonStyle: ButtonStyle {
+    var scale: CGFloat = 0.96
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? scale : 1.0)
+            .animation(.spring(response: 0.25, dampingFraction: 0.6), value: configuration.isPressed)
+    }
+}
+
+extension View {
+    func pressable(scale: CGFloat = 0.96) -> some View {
+        self.buttonStyle(PressableButtonStyle(scale: scale))
+    }
+}
+
 // MARK: - Glass Modifiers
 
 extension View {

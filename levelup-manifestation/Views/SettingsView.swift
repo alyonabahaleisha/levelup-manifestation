@@ -105,11 +105,13 @@ struct SettingsView: View {
                                     HStack(spacing: 6) {
                                         ForEach(intervalOptions, id: \.minutes) { option in
                                             Button(option.label) {
+                                                UISelectionFeedbackGenerator().selectionChanged()
                                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                                     notifications.intervalMinutes = option.minutes
                                                     notifications.scheduleNotifications()
                                                 }
                                             }
+                                            .pressable()
                                             .font(.system(size: 13, weight: .medium))
                                             .foregroundStyle(notifications.intervalMinutes == option.minutes ? theme.tone.accent : .white.opacity(0.4))
                                             .padding(.horizontal, 10)
@@ -160,7 +162,10 @@ struct ToneRow: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button {
+            UISelectionFeedbackGenerator().selectionChanged()
+            onTap()
+        } label: {
             HStack(spacing: 14) {
                 Circle()
                     .fill(LinearGradient(colors: tone.gradient, startPoint: .topLeading, endPoint: .bottomTrailing))

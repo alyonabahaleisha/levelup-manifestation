@@ -7,6 +7,8 @@ struct ProgramRewriteView: View {
     let onBack: () -> Void
 
     @State private var showRewrite = false
+    @State private var pulseScale: CGFloat = 1
+    @State private var pulseOpacity: CGFloat = 0
     private var saved: Bool { savedPrograms.isSaved(program) }
 
     var body: some View {
@@ -20,6 +22,7 @@ struct ProgramRewriteView: View {
                         .padding(12)
                         .glassCard(cornerRadius: 14)
                 }
+                .pressable()
                 Spacer()
             }
             .padding(.horizontal, 24)
@@ -84,16 +87,26 @@ struct ProgramRewriteView: View {
 
             Spacer()
 
-            // Actions
-            VStack(spacing: 12) {
+            // Save button
+            ZStack {
+                // Expanding glow ring on save
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .stroke(theme.tone.accent, lineWidth: 2)
+                    .padding(.horizontal, 24)
+                    .scaleEffect(pulseScale)
+                    .opacity(pulseOpacity)
+
                 Button {
-                    let notification = UINotificationFeedbackGenerator()
-                    notification.notificationOccurred(.success)
+                    guard !saved else { return }
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                     savedPrograms.save(program)
+                    triggerPulse()
                 } label: {
                     HStack(spacing: 10) {
                         Image(systemName: saved ? "checkmark.circle.fill" : "sparkles")
                             .font(.system(size: 16))
+                            .scaleEffect(saved ? 1.2 : 1.0)
+                            .animation(.spring(response: 0.3, dampingFraction: 0.5), value: saved)
                         Text(saved ? "Saved to Identity" : "Save to Identity")
                             .font(.system(size: 16, weight: .medium))
                     }
@@ -107,16 +120,24 @@ struct ProgramRewriteView: View {
                     )
                 }
                 .padding(.horizontal, 24)
+                .pressable()
                 .disabled(saved)
             }
             .padding(.bottom, 140)
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                withAnimation {
-                    showRewrite = true
-                }
+                withAnimation { showRewrite = true }
             }
+        }
+    }
+
+    private func triggerPulse() {
+        pulseScale = 1
+        pulseOpacity = 0.8
+        withAnimation(.easeOut(duration: 0.7)) {
+            pulseScale = 1.12
+            pulseOpacity = 0
         }
     }
 }

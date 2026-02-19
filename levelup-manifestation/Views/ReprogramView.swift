@@ -46,14 +46,14 @@ struct ReprogramView: View {
 
             // Grid
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 14) {
-                ForEach(availableAreas) { area in
+                ForEach(Array(availableAreas.enumerated()), id: \.element) { index, area in
                     Button {
-                        let impact = UIImpactFeedbackGenerator(style: .light)
-                        impact.impactOccurred()
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         selectedArea = area
                     } label: {
-                        AreaCard(area: area)
+                        AreaCard(area: area, index: index)
                     }
+                    .pressable(scale: 0.94)
                 }
             }
             .padding(.horizontal, 20)
@@ -68,6 +68,8 @@ struct ReprogramView: View {
 struct AreaCard: View {
     @EnvironmentObject var theme: ThemeManager
     let area: LifeArea
+    let index: Int
+    @State private var appeared = false
 
     var body: some View {
         VStack(spacing: 10) {
@@ -82,5 +84,12 @@ struct AreaCard: View {
         .padding(.vertical, 28)
         .glassCard(cornerRadius: 20)
         .shadow(color: theme.tone.glowColor, radius: 16, x: 0, y: 0)
+        .scaleEffect(appeared ? 1 : 0.85)
+        .opacity(appeared ? 1 : 0)
+        .onAppear {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.72).delay(Double(index) * 0.06)) {
+                appeared = true
+            }
+        }
     }
 }
