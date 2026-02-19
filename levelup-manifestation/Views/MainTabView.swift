@@ -1,31 +1,31 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: AppTab = .meditate
+    @EnvironmentObject var theme: ThemeManager
+    @State private var selectedTab: AppTab = .affirmations
 
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .bottom) {
             // Full screen content
             ZStack {
                 switch selectedTab {
-                case .meditate:
-                    MeditationCardsView()
+                case .affirmations:
+                    AffirmationsFeedView()
                         .transition(.opacity)
-                case .chat:
-                    ChatView()
+                case .reprogram:
+                    ReprogramView()
                         .transition(.opacity)
                 }
             }
-            .animation(.easeInOut(duration: 0.3), value: selectedTab)
+            .animation(.easeInOut(duration: 0.25), value: selectedTab)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
 
-            // Floating pill at bottom-left
+            // Glass tab bar — bottom center
             SideTabBar(selectedTab: $selectedTab)
-                .padding(.leading, 20)
-                .padding(.bottom, 40)
+                .padding(.bottom, 36)
         }
         .ignoresSafeArea()
-        .statusBarStyle(selectedTab == .meditate ? .lightContent : .darkContent)
+        .statusBarStyle(.lightContent)
     }
 }

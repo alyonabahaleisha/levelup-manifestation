@@ -1,44 +1,50 @@
 import SwiftUI
 
-enum AppTab {
-    case meditate
-    case chat
-}
-
 struct SideTabBar: View {
+    @EnvironmentObject var theme: ThemeManager
     @Binding var selectedTab: AppTab
 
-    private var isDarkTab: Bool { selectedTab == .meditate }
-
     var body: some View {
-        VStack(spacing: 8) {
-            tabButton(tab: .meditate, icon: "sparkles")
-            tabButton(tab: .chat, icon: "message")
+        HStack(spacing: 4) {
+            tabButton(tab: .affirmations, icon: "quote.bubble", label: "Affirm")
+            tabButton(tab: .reprogram, icon: "arrow.clockwise.circle", label: "Reprogram")
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 10)
-        .background(
-            RoundedRectangle(cornerRadius: 24)
-                .fill(isDarkTab
-                    ? Color(red: 0.18, green: 0.18, blue: 0.20).opacity(0.85)
-                    : Color(red: 0.92, green: 0.92, blue: 0.92).opacity(0.85)
-                )
-                .shadow(color: .black.opacity(0.25), radius: 12, x: 0, y: 4)
-        )
-        .animation(.easeInOut(duration: 0.3), value: isDarkTab)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 8)
+        .background(.ultraThinMaterial)
+        .background(Color.black.opacity(0.25))
+        .clipShape(Capsule())
+        .overlay(Capsule().stroke(Color.white.opacity(0.12), lineWidth: 1))
+        .shadow(color: .black.opacity(0.5), radius: 24, x: 0, y: 12)
     }
 
     @ViewBuilder
-    private func tabButton(tab: AppTab, icon: String) -> some View {
+    private func tabButton(tab: AppTab, icon: String, label: String) -> some View {
+        let isSelected = selectedTab == tab
         Button {
-            selectedTab = tab
+            let impact = UISelectionFeedbackGenerator()
+            impact.selectionChanged()
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                selectedTab = tab
+            }
         } label: {
-            Image(systemName: selectedTab == tab ? "\(icon).fill" : icon)
-                .font(.system(size: 22))
-                .foregroundStyle(selectedTab == tab ? .purple : (isDarkTab ? .white.opacity(0.5) : .black.opacity(0.3)))
-                .scaleEffect(selectedTab == tab ? 1.15 : 1.0)
-                .animation(.spring(response: 0.2, dampingFraction: 0.7), value: selectedTab == tab)
-                .frame(width: 44, height: 44)
+            VStack(spacing: 4) {
+                Image(systemName: icon)
+                    .font(.system(size: 20, weight: isSelected ? .semibold : .light))
+                    .foregroundStyle(isSelected ? theme.tone.accent : .white.opacity(0.4))
+                    .frame(height: 24)
+                Text(label)
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(isSelected ? theme.tone.accent : .white.opacity(0.4))
+            }
+            .scaleEffect(isSelected ? 1.05 : 1.0)
+            .animation(.spring(response: 0.25, dampingFraction: 0.65), value: isSelected)
+            .frame(width: 96, height: 52)
+            .background(
+                Capsule()
+                    .fill(isSelected ? theme.tone.accent.opacity(0.14) : Color.clear)
+                    .padding(.horizontal, 4)
+            )
         }
     }
 }
