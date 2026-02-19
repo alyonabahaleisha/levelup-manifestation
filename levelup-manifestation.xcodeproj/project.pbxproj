@@ -15,6 +15,8 @@
 		8065806F2F465A3300749AD3 /* AffirmationsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065806A2F465A3300749AD3 /* AffirmationsFeedView.swift */; };
 		806580702F465A3300749AD3 /* ProgramRewriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065806C2F465A3300749AD3 /* ProgramRewriteView.swift */; };
 		806580712F465A3300749AD3 /* HiddenProgramsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065806B2F465A3300749AD3 /* HiddenProgramsListView.swift */; };
+		806580722F465A3400749AD3 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580732F465A3400749AD3 /* SplashScreenView.swift */; };
+		806580742F465A3400749AD3 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806580752F465A3400749AD3 /* AppIconView.swift */; };
 		A1000001000000000000001 /* levelup_manifestationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000002000000000000001 /* levelup_manifestationApp.swift */; };
 		A1000003000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000004000000000000001 /* ContentView.swift */; };
 		A1000005000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000006000000000000001 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		8065806B2F465A3300749AD3 /* HiddenProgramsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenProgramsListView.swift; sourceTree = "<group>"; };
 		8065806C2F465A3300749AD3 /* ProgramRewriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramRewriteView.swift; sourceTree = "<group>"; };
 		8065806D2F465A3300749AD3 /* ReprogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprogramView.swift; sourceTree = "<group>"; };
+		806580732F465A3400749AD3 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		806580752F465A3400749AD3 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		A1000002000000000000001 /* levelup_manifestationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = levelup_manifestationApp.swift; sourceTree = "<group>"; };
 		A1000004000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000006000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,10 +71,6 @@
 		A1000009000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				806580622F4659FD00749AD3 /* AffirmationContent.swift */,
-				806580632F4659FD00749AD3 /* AppTheme.swift */,
-				806580642F4659FD00749AD3 /* ProgramContent.swift */,
-				806580652F4659FD00749AD3 /* ThemeManager.swift */,
 				A1000010000000000000001 /* levelup-manifestation */,
 				A1000011000000000000001 /* Products */,
 			);
@@ -81,6 +81,10 @@
 			children = (
 				A1000002000000000000001 /* levelup_manifestationApp.swift */,
 				A1000004000000000000001 /* ContentView.swift */,
+				806580622F4659FD00749AD3 /* AffirmationContent.swift */,
+				806580632F4659FD00749AD3 /* AppTheme.swift */,
+				806580642F4659FD00749AD3 /* ProgramContent.swift */,
+				806580652F4659FD00749AD3 /* ThemeManager.swift */,
 				A1000034000000000000001 /* Models */,
 				A1000035000000000000001 /* Views */,
 				A1000006000000000000001 /* Assets.xcassets */,
@@ -112,6 +116,8 @@
 				8065806B2F465A3300749AD3 /* HiddenProgramsListView.swift */,
 				8065806C2F465A3300749AD3 /* ProgramRewriteView.swift */,
 				8065806D2F465A3300749AD3 /* ReprogramView.swift */,
+				806580732F465A3400749AD3 /* SplashScreenView.swift */,
+				806580752F465A3400749AD3 /* AppIconView.swift */,
 				A1000027000000000000001 /* ParticlesView.swift */,
 				A1000029000000000000001 /* MeditationCardsView.swift */,
 				A1000031000000000000001 /* ChatView.swift */,
@@ -209,6 +215,8 @@
 				8065806F2F465A3300749AD3 /* AffirmationsFeedView.swift in Sources */,
 				806580702F465A3300749AD3 /* ProgramRewriteView.swift in Sources */,
 				806580712F465A3300749AD3 /* HiddenProgramsListView.swift in Sources */,
+				806580722F465A3400749AD3 /* SplashScreenView.swift in Sources */,
+				806580742F465A3400749AD3 /* AppIconView.swift in Sources */,
 				A1000032000000000000001 /* MainTabView.swift in Sources */,
 				A1000036000000000000001 /* StatusBarModifier.swift in Sources */,
 				A1000038000000000000001 /* SideTabBar.swift in Sources */,
