@@ -40,6 +40,7 @@
 		87CBDB12675CE03134EB27C6 /* playfair_display_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4125646D9BC6212F5C62E03D /* playfair_display_bold.ttf */; };
 		892FDED879DC20DBF1187F39 /* manrope_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C36C5421A4ED729FFD2379 /* manrope_semibold.ttf */; };
 		8FEA7944F06B5FB85431EB53 /* MeditationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A9524080613A19EA065BC /* MeditationViewModel.swift */; };
+		99C0F5D60DFA25BCE5EE683B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */; };
 		A3D5185A40F1E8B1D1B586D0 /* bg_affirmations.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1493069238DB7B7D2EEE830 /* bg_affirmations.jpg */; };
 		A976E06A58D30CD962EE5C86 /* AffirmationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59788D65BB0F279B7043786F /* AffirmationsView.swift */; };
 		A9D51700F06B0E1037C44C88 /* SavedProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C77FBD8A173980CFFB6B3 /* SavedProgramsViewModel.swift */; };
@@ -110,6 +111,7 @@
 		E524691D415B1FB0866110FD /* card_bg_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_1.jpg; sourceTree = "<group>"; };
 		E7B28E5102F175DB2C65F996 /* card_bg_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_7.jpg; sourceTree = "<group>"; };
 		EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
+		ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC4270488DCBE3A3749C40E1 /* manrope_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_regular.ttf; sourceTree = "<group>"; };
 		FD2E25DC42588FDD65CF1784 /* bg_home.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_home.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,6 +272,7 @@
 		C1491AB3F96A52059DC72B77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */,
 				5ABCD83AE3FBE029B0A3A3A4 /* translations.json */,
 				B3409C17FA82B70DE3DCC04D /* Fonts */,
 				3A837D1013BB1018A2531EBF /* Images */,
@@ -389,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C0F5D60DFA25BCE5EE683B /* Assets.xcassets in Resources */,
 				F54F4878407709CDD56A3E55 /* app_icon.png in Resources */,
 				A3D5185A40F1E8B1D1B586D0 /* bg_affirmations.jpg in Resources */,
 				05E01D2375201502C4056D76 /* bg_home.jpg in Resources */,
