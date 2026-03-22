@@ -1,0 +1,43 @@
+name: SMA
+options:
+  bundleIdPrefix: com.levelup.manifestation
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    GENERATE_INFOPLIST_FILE: YES
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  SMA:
+    type: application
+    platform: iOS
+    sources:
+      - SMA
+    resources:
+      - SMA/Resources
+    settings:
+      base:
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_CFBundleDisplayName: "Школа Михаила Агеева"
+        INFOPLIST_KEY_UIStatusBarStyle: ""
+        PRODUCT_BUNDLE_IDENTIFIER: com.levelup.manifestation.ru
+    info:
+      path: SMA/Info.plist
+      properties:
+        UIAppFonts:
+          - playfair_display_regular.ttf
+          - playfair_display_medium.ttf
+          - playfair_display_semibold.ttf
+          - playfair_display_bold.ttf
+          - manrope_light.ttf
+          - manrope_regular.ttf
+          - manrope_medium.ttf
+          - manrope_semibold.ttf
+          - manrope_bold.ttf
+        UIBackgroundModes:
+          - audio
