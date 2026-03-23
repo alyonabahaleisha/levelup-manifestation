@@ -6,10 +6,14 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            Image("bg_home")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            GeometryReader { geo in
+                Image("bg_home")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            }
+            .ignoresSafeArea()
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {

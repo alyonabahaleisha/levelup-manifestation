@@ -21,10 +21,14 @@ struct MeditationPlayerView: View {
         ZStack {
             // Background
             if themeMode == .ethereal {
-                Image("bg_player")
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
+                GeometryReader { geo in
+                    Image("bg_player")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .clipped()
+                }
+                .ignoresSafeArea()
             } else {
                 Color(hex: "154C6C").ignoresSafeArea()
             }
@@ -58,6 +62,7 @@ struct MeditationPlayerView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(width: 180, height: 180)
+                            .clipped()
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.white.opacity(0.15), lineWidth: 1.5))
                     }

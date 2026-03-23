@@ -5,7 +5,7 @@ enum MeditationContent {
     
     static func meditations(_ area: LifeArea) -> [Meditation] {
         Translations.meditationData(area).map { raw in
-            Meditation(id: raw.id, title: raw.title, area: area, fileName: raw.fileName, durationSeconds: raw.durationSeconds)
+            Meditation(id: raw.id, title: raw.title, description: raw.description, area: area, fileName: raw.fileName, durationSeconds: raw.durationSeconds)
         }
     }
     

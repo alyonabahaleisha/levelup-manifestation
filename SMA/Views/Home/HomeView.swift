@@ -8,10 +8,10 @@ private let textSecondary = Color(hex: "AAC8D8")
 struct HomeView: View {
     @ObservedObject var savedProgramsVM: SavedProgramsViewModel
     @ObservedObject var meditationVM: MeditationViewModel
-    var onNavigateToAffirmations: () -> Void
     var onNavigateToReprogram: () -> Void
     var onNavigateToMeditations: () -> Void
 
+    @State private var showAffirmations = false
     @State private var currentAffirmationPage: Int? = 0
 
     private let cardImages = ["card_bg_1", "card_bg_2", "card_bg_3", "card_bg_4", "card_bg_5",
@@ -87,7 +87,7 @@ struct HomeView: View {
                                         }
                                         .frame(width: cardWidth, height: 260)
                                         .clipShape(RoundedRectangle(cornerRadius: 28))
-                                        .onTapGesture { onNavigateToAffirmations() }
+                                        .onTapGesture { showAffirmations = true }
                                     }
                                 }
                                 .scrollTargetLayout()
@@ -191,6 +191,23 @@ struct HomeView: View {
                     .padding(.top, 32)
                     .padding(.bottom, 40)
                 }
+            }
+        }
+        .fullScreenCover(isPresented: $showAffirmations) {
+            ZStack(alignment: .topLeading) {
+                AffirmationsView()
+                Button {
+                    showAffirmations = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(width: 36, height: 36)
+                        .background(Color.black.opacity(0.3))
+                        .clipShape(Circle())
+                }
+                .padding(.top, 56)
+                .padding(.leading, 20)
             }
         }
     }

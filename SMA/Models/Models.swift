@@ -17,6 +17,7 @@ struct HiddenProgram: Identifiable {
 struct Meditation: Identifiable {
     let id: String
     let title: String
+    let description: String
     let area: LifeArea
     let fileName: String
     let durationSeconds: Int

@@ -27,11 +27,15 @@ struct AffirmationsView: View {
         
         ZStack {
             // Crossfade background
-            Image(currentStyle.imageName)
-                .resizable()
-                .scaledToFill()
-                .opacity(0.5)
-                .ignoresSafeArea()
+            GeometryReader { geo in
+                Image(currentStyle.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+                    .opacity(0.5)
+            }
+            .ignoresSafeArea()
             
             currentStyle.bgColor.opacity(0.45)
                 .ignoresSafeArea()
@@ -49,6 +53,7 @@ struct AffirmationsView: View {
                                 .resizable()
                                 .scaledToFill()
                                 .frame(height: 480)
+                                .frame(maxWidth: .infinity)
                                 .clipped()
                             
                             // Radial frost

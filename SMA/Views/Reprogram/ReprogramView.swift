@@ -6,10 +6,14 @@ struct ReprogramView: View {
     
     var body: some View {
         ZStack {
-            Image("bg_reprogram")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            GeometryReader { geo in
+                Image("bg_reprogram")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            }
+            .ignoresSafeArea()
             
             if let area = selectedArea {
                 HiddenProgramsView(area: area, savedProgramsVM: savedProgramsVM) {
@@ -168,10 +172,14 @@ struct ProgramRewriteView: View {
     
     var body: some View {
         ZStack {
-            Image("bg_reprogram")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            GeometryReader { geo in
+                Image("bg_reprogram")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            }
+            .ignoresSafeArea()
             
             VStack(spacing: 0) {
                 HStack {

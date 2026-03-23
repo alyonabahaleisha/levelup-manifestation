@@ -36,10 +36,11 @@ class Translations: @unchecked Sendable {
     struct MeditationRaw {
         let id: String
         let title: String
+        let description: String
         let fileName: String
         let durationSeconds: Int
     }
-    
+
     static func meditationData(_ area: LifeArea) -> [MeditationRaw] {
         let key = area.rawValue
         guard let meditations = shared.lang["meditations"] as? [String: [[String: Any]]] else { return [] }
@@ -49,7 +50,8 @@ class Translations: @unchecked Sendable {
                   let title = obj["title"] as? String,
                   let fileName = obj["fileName"] as? String,
                   let duration = obj["durationSeconds"] as? Int else { return nil }
-            return MeditationRaw(id: id, title: title, fileName: fileName, durationSeconds: duration)
+            let description = obj["description"] as? String ?? ""
+            return MeditationRaw(id: id, title: title, description: description, fileName: fileName, durationSeconds: duration)
         }
     }
     
