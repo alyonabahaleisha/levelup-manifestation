@@ -11,93 +11,159 @@ struct HomeView: View {
     var onNavigateToAffirmations: () -> Void
     var onNavigateToReprogram: () -> Void
     var onNavigateToMeditations: () -> Void
-    
+
+    @State private var currentAffirmationPage: Int? = 0
+
     private let cardImages = ["card_bg_1", "card_bg_2", "card_bg_3", "card_bg_4", "card_bg_5",
                                "card_bg_6", "card_bg_7", "card_bg_8", "card_bg_9", "card_bg_10"]
-    
+
+    private var timeGreeting: String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        if hour < 12 {
+            return Translations.ui("greetingMorning")
+        } else if hour < 18 {
+            return Translations.ui("greetingDay")
+        } else {
+            return Translations.ui("greetingEvening")
+        }
+    }
+
     var body: some View {
         let topAffirmations = AffirmationContent.feed().prefix(10).map { $0 }
         let allMeditations = meditationVM.allMeditations()
         let totalPerArea = Dictionary(uniqueKeysWithValues: LifeArea.allCases.map { ($0, ProgramContent.programs($0).count) })
-        
+
         ZStack {
             bgColor.ignoresSafeArea()
-            
+
             ScrollView {
                 VStack(spacing: 0) {
-                    // Hero image
-                    ZStack(alignment: .bottomLeading) {
-                        Image("bg_home_top")
+                    // ── Compact header: portrait + school name + greeting ─────
+                    HStack(spacing: 12) {
+                        Image("mikhail_portrait")
                             .resizable()
                             .scaledToFill()
-                            .frame(height: 340)
-                            .clipped()
-                        
-                        LinearGradient(colors: [.clear, bgColor], startPoint: .top, endPoint: .bottom)
-                            .frame(height: 120)
-                            .frame(maxWidth: .infinity)
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(Translations.ui("homeGreeting"))
-                                .font(AppTypography.headingLarge)
-                                .foregroundColor(.white)
+                            .frame(width: 44, height: 44)
+                            .clipShape(Circle())
+
+                        VStack(alignment: .leading, spacing: 2) {
                             Text("Школа Михаила Агеева")
                                 .font(AppTypography.bodySmall)
-                                .foregroundColor(.white.opacity(0.6))
+                                .foregroundColor(.white.opacity(0.7))
+
+                            Text(timeGreeting)
+                                .font(AppTypography.headingMedium)
+                                .foregroundColor(.white)
                         }
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 24)
+
+                        Spacer()
                     }
-                    .frame(height: 340)
-                    
-                    // Affirmation pager
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
+
+                    // ── Affirmation hero card ─────────────────────────────────
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Провозглашение дня")
                             .font(AppTypography.headingSmall)
                             .foregroundColor(textPrimary)
                             .padding(.horizontal, 24)
-                        
-                        TabView {
-                            ForEach(Array(topAffirmations.enumerated()), id: \.element.id) { index, affirmation in
-                                ZStack {
-                                    Image(cardImages[index % cardImages.count])
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(height: 280)
-                                        .clipped()
-                                    
-                                    Color.white.opacity(0.55)
-                                    
-                                    Text(affirmation.text)
-                                        .font(.custom("PlayfairDisplay-Medium", size: 16))
-                                        .foregroundColor(textOnCard)
-                                        .multilineTextAlignment(.center)
-                                        .lineSpacing(8)
-                                        .padding(24)
+
+                        GeometryReader { geo in
+                            let cardWidth = geo.size.width - 48
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack(spacing: 14) {
+                                    ForEach(Array(topAffirmations.enumerated()), id: \.element.id) { index, affirmation in
+                                        ZStack {
+                                            GIFView(gifName: "bg_affirmation_card")
+                                            Color.black.opacity(0.35)
+                                            Text(affirmation.text)
+                                                .font(.custom("PlayfairDisplay-Medium", size: 18))
+                                                .foregroundColor(.white)
+                                                .multilineTextAlignment(.center)
+                                                .lineSpacing(6)
+                                                .lineLimit(5)
+                                                .padding(.horizontal, 28)
+                                                .padding(.vertical, 24)
+                                        }
+                                        .frame(width: cardWidth, height: 260)
+                                        .clipShape(RoundedRectangle(cornerRadius: 28))
+                                        .onTapGesture { onNavigateToAffirmations() }
+                                    }
                                 }
-                                .clipShape(RoundedRectangle(cornerRadius: 28))
-                                .padding(.horizontal, 32)
-                                .onTapGesture { onNavigateToAffirmations() }
+                                .scrollTargetLayout()
+                                .padding(.horizontal, 24)
+                            }
+                            .scrollTargetBehavior(.viewAligned)
+                            .scrollPosition(id: $currentAffirmationPage)
+                        }
+                        .frame(height: 260)
+
+                        // Page indicator dots below card
+                        HStack(spacing: 6) {
+                            ForEach(0..<topAffirmations.count, id: \.self) { i in
+                                Circle()
+                                    .fill(i == (currentAffirmationPage ?? 0) ? Color.white : Color.white.opacity(0.3))
+                                    .frame(width: i == (currentAffirmationPage ?? 0) ? 8 : 6,
+                                           height: i == (currentAffirmationPage ?? 0) ? 8 : 6)
                             }
                         }
-                        .tabViewStyle(.page(indexDisplayMode: .never))
-                        .frame(height: 300)
+                        .frame(maxWidth: .infinity)
                     }
-                    .padding(.top, 16)
-                    
-                    // Reprogram section
+                    .padding(.top, 24)
+
+                    // ── Meditations section ──────────────────────────────────
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Медитации")
+                            .font(AppTypography.headingSmall)
+                            .foregroundColor(textPrimary)
+                            .padding(.horizontal, 24)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(Array(allMeditations.enumerated()), id: \.element.id) { index, meditation in
+                                    ZStack(alignment: .bottomLeading) {
+                                        Image(cardImages[(index + 3) % cardImages.count])
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 200, height: 160)
+                                            .clipped()
+
+                                        LinearGradient(colors: [.clear, .black.opacity(0.45)], startPoint: .top, endPoint: .bottom)
+
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(meditation.title)
+                                                .font(AppTypography.bodyMedium)
+                                                .foregroundColor(.white)
+                                                .lineLimit(2)
+                                            Text("\(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
+                                                .font(AppTypography.caption)
+                                                .foregroundColor(.white.opacity(0.6))
+                                        }
+                                        .padding(16)
+                                    }
+                                    .frame(width: 200, height: 160)
+                                    .clipShape(RoundedRectangle(cornerRadius: 22))
+                                    .onTapGesture { onNavigateToMeditations() }
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                        }
+                    }
+                    .padding(.top, 32)
+
+                    // ── Reprogram section ────────────────────────────────────
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Программы для работы")
                             .font(AppTypography.headingSmall)
                             .foregroundColor(textPrimary)
                             .padding(.horizontal, 24)
-                        
+
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 12) {
                                 ForEach(LifeArea.allCases, id: \.self) { area in
                                     let savedCount = savedProgramsVM.saved.filter { $0.area == area }.count
                                     let totalCount = totalPerArea[area] ?? 0
-                                    
+
                                     VStack(spacing: 10) {
                                         Spacer()
                                         Text(Translations.lifeAreaLabel(area))
@@ -122,47 +188,7 @@ struct HomeView: View {
                             .padding(.horizontal, 24)
                         }
                     }
-                    .padding(.top, 56)
-                    
-                    // Meditations section
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("Медитации")
-                            .font(AppTypography.headingSmall)
-                            .foregroundColor(textPrimary)
-                            .padding(.horizontal, 24)
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 12) {
-                                ForEach(Array(allMeditations.enumerated()), id: \.element.id) { index, meditation in
-                                    ZStack(alignment: .bottomLeading) {
-                                        Image(cardImages[(index + 3) % cardImages.count])
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 200, height: 160)
-                                            .clipped()
-                                        
-                                        LinearGradient(colors: [.clear, .black.opacity(0.45)], startPoint: .top, endPoint: .bottom)
-                                        
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(meditation.title)
-                                                .font(AppTypography.bodyMedium)
-                                                .foregroundColor(.white)
-                                                .lineLimit(2)
-                                            Text("\(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
-                                                .font(AppTypography.caption)
-                                                .foregroundColor(.white.opacity(0.6))
-                                        }
-                                        .padding(16)
-                                    }
-                                    .frame(width: 200, height: 160)
-                                    .clipShape(RoundedRectangle(cornerRadius: 22))
-                                    .onTapGesture { onNavigateToMeditations() }
-                                }
-                            }
-                            .padding(.horizontal, 24)
-                        }
-                    }
-                    .padding(.top, 56)
+                    .padding(.top, 32)
                     .padding(.bottom, 40)
                 }
             }

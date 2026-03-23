@@ -6,6 +6,9 @@
       "reprogramTab": "Убеждения",
       "homeTab": "Главная",
       "homeGreeting": "Добро пожаловать",
+      "greetingMorning": "Доброе утро",
+      "greetingDay": "Добрый день",
+      "greetingEvening": "Добрый вечер",
       "homeDailyAffirmation": "ПРОВОЗГЛАШЕНИЕ ДНЯ",
       "homeReprogram": "ПРОГРАММЫ ДЛЯ РАБОТЫ",
       "homeMeditations": "МЕДИТАЦИИ",
@@ -14,6 +17,14 @@
       "meditationsSubtitle": "Погрузись в поток высоких вибраций",
       "allAreas": "Все",
       "minutesShort": "мин",
+      "moodQuestion": "Что вам нужно сейчас?",
+      "moodCalm": "Покой",
+      "moodEnergy": "Энергия",
+      "moodLove": "Любовь",
+      "moodRelease": "Отпустить",
+      "moodTransform": "Трансформация",
+      "moodProtection": "Защита",
+      "moodShowAll": "Показать все",
       "allFilter": "Все",
       "yourIdentity": "Твоя Личность",
       "settingsTitle": "Настройки",
@@ -482,36 +493,36 @@
     },
     "meditations": {
       "money": [
-        { "id": "abundance", "title": "Активация Изобилия", "fileName": "abundance_activation.mp3", "durationSeconds": 1162 }
+        { "id": "abundance", "title": "Активация Изобилия", "description": "Медитация для привлечения потока изобилия и финансовой энергии в вашу жизнь", "fileName": "abundance_activation.mp3", "durationSeconds": 1162 }
       ],
       "confidence": [
-        { "id": "divine_dna", "title": "Активация Божественной ДНК", "fileName": "divine_dna.mp3", "durationSeconds": 2353 }
+        { "id": "divine_dna", "title": "Активация Божественной ДНК", "description": "Глубокая практика пробуждения вашего божественного потенциала и внутренней силы", "fileName": "divine_dna.mp3", "durationSeconds": 2353 }
       ],
       "love": [
-        { "id": "karmic_release", "title": "Завершение кармических отношений", "fileName": "karmic_release.mp3", "durationSeconds": 3210 }
+        { "id": "karmic_release", "title": "Завершение кармических отношений", "description": "Освобождение от кармических связей и эмоциональных привязанностей прошлого", "fileName": "karmic_release.mp3", "durationSeconds": 3210 }
       ],
       "calm": [
-        { "id": "return_to_self", "title": "Возвращение к себе", "fileName": "return_to_self.mp3", "durationSeconds": 1913 },
-        { "id": "chakra_harmony", "title": "Гармонизация чакр", "fileName": "chakra_harmony.mp3", "durationSeconds": 2377 }
+        { "id": "return_to_self", "title": "Возвращение к себе", "description": "Мягкая практика для восстановления связи с вашей истинной сущностью", "fileName": "return_to_self.mp3", "durationSeconds": 1913 },
+        { "id": "chakra_harmony", "title": "Гармонизация чакр", "description": "Выравнивание и очищение всех семи чакр для восстановления энергетического баланса", "fileName": "chakra_harmony.mp3", "durationSeconds": 2377 }
       ],
       "career": [
-        { "id": "harmonize_life", "title": "Гармонизация жизни", "fileName": "harmonize_life.mp3", "durationSeconds": 2095 },
-        { "id": "create_reality", "title": "Создание желаемой реальности", "fileName": "create_reality.mp3", "durationSeconds": 2332 }
+        { "id": "harmonize_life", "title": "Гармонизация жизни", "description": "Практика для создания гармонии между всеми сферами вашей жизни", "fileName": "harmonize_life.mp3", "durationSeconds": 2095 },
+        { "id": "create_reality", "title": "Создание желаемой реальности", "description": "Визуализация и программирование вашей идеальной реальности через силу намерения", "fileName": "create_reality.mp3", "durationSeconds": 2332 }
       ],
       "feminineEnergy": [
-        { "id": "angel_activation", "title": "Активация Ангелов", "fileName": "angel_activation.mp3", "durationSeconds": 2472 }
+        { "id": "angel_activation", "title": "Активация Ангелов", "description": "Соединение с ангельскими энергиями для защиты и духовного руководства", "fileName": "angel_activation.mp3", "durationSeconds": 2472 }
       ],
       "relationships": [
-        { "id": "subtle_bodies", "title": "Гармонизация тонких тел", "fileName": "subtle_bodies.mp3", "durationSeconds": 2431 }
+        { "id": "subtle_bodies", "title": "Гармонизация тонких тел", "description": "Восстановление и балансировка ваших тонких энергетических тел", "fileName": "subtle_bodies.mp3", "durationSeconds": 2431 }
       ],
       "selfWorth": [
-        { "id": "cleansing", "title": "Очищение от сущностей и негативных энергий", "fileName": "cleansing.mp3", "durationSeconds": 3158 }
+        { "id": "cleansing", "title": "Очищение от сущностей и негативных энергий", "description": "Мощная практика очищения энергетического поля от негативных воздействий", "fileName": "cleansing.mp3", "durationSeconds": 3158 }
       ],
       "fear": [
-        { "id": "return_to_self_2", "title": "Возвращение к себе", "fileName": "return_to_self.mp3", "durationSeconds": 1913 }
+        { "id": "return_to_self_2", "title": "Возвращение к себе", "description": "Мягкая практика для восстановления связи с вашей истинной сущностью", "fileName": "return_to_self.mp3", "durationSeconds": 1913 }
       ],
       "body": [
-        { "id": "chakra_harmony_2", "title": "Гармонизация чакр", "fileName": "chakra_harmony.mp3", "durationSeconds": 2377 }
+        { "id": "chakra_harmony_2", "title": "Гармонизация чакр", "description": "Выравнивание и очищение всех семи чакр для восстановления энергетического баланса", "fileName": "chakra_harmony.mp3", "durationSeconds": 2377 }
       ]
     }
   }
