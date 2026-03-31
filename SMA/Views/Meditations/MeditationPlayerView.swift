@@ -3,7 +3,9 @@ import SwiftUI
 struct MeditationPlayerView: View {
     let meditation: Meditation
     @ObservedObject var viewModel: MeditationViewModel
-    @Environment(\.themeMode) var themeMode
+    var cardImage: String = "bg_player"
+    var gifName: String? = nil
+    var coverUrl: String? = nil
     var onBack: () -> Void
     
     private var isActive: Bool {
@@ -19,20 +21,39 @@ struct MeditationPlayerView: View {
     
     var body: some View {
         ZStack {
-            // Background
-            if themeMode == .ethereal {
-                GeometryReader { geo in
-                    Image("bg_player")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: geo.size.width, height: geo.size.height)
-                        .clipped()
+            // Background: prefer remote coverUrl, fall back to local asset/GIF
+            GeometryReader { geo in
+                if let urlString = coverUrl, let url = URL(string: urlString) {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image.resizable().scaledToFill()
+                                .frame(width: geo.size.width, height: geo.size.height)
+                                .clipped()
+                        default:
+                            localBackground(width: geo.size.width, height: geo.size.height)
+                        }
+                    }
+                } else {
+                    localBackground(width: geo.size.width, height: geo.size.height)
                 }
-                .ignoresSafeArea()
-            } else {
-                Color(hex: "154C6C").ignoresSafeArea()
             }
-            
+            .ignoresSafeArea()
+
+            // Gradient overlay: dark at top/bottom, clear in center
+            LinearGradient(
+                stops: [
+                    .init(color: .black.opacity(0.6), location: 0),
+                    .init(color: .black.opacity(0.15), location: 0.3),
+                    .init(color: .black.opacity(0.15), location: 0.55),
+                    .init(color: .black.opacity(0.55), location: 0.75),
+                    .init(color: .black.opacity(0.75), location: 1)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+
             VStack(spacing: 0) {
                 // Back button
                 HStack {
@@ -56,16 +77,6 @@ struct MeditationPlayerView: View {
                     CircularArc(progress: progress, accentColor: ToneTheme.default.accent)
                         .frame(width: 280, height: 280)
                     
-                    // Portrait for teal mode
-                    if themeMode == .teal {
-                        Image("mikhail_portrait")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 180, height: 180)
-                            .clipped()
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.white.opacity(0.15), lineWidth: 1.5))
-                    }
                 }
                 
                 Spacer().frame(height: 40)
@@ -128,6 +139,21 @@ struct MeditationPlayerView: View {
                 
                 Spacer().frame(height: 80)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func localBackground(width: CGFloat, height: CGFloat) -> some View {
+        if let gif = gifName {
+            GIFView(gifName: gif)
+                .frame(width: width, height: height)
+                .clipped()
+        } else {
+            Image(cardImage)
+                .resizable()
+                .scaledToFill()
+                .frame(width: width, height: height)
+                .clipped()
         }
     }
 }

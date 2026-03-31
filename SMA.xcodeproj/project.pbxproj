@@ -11,20 +11,24 @@
 		06B7EF6C45652954F7FE5C17 /* bg_player.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44EAEB38B6DE3E869D37C531 /* bg_player.jpg */; };
 		0D7E3C33BE1AD1D5D0EB9A8D /* card_bg_9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C017B144E32532CA46726DA1 /* card_bg_9.jpg */; };
 		0EBDA0A022A98A9928B156D8 /* AffirmationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826A85F258FD78C556F1CEB /* AffirmationContent.swift */; };
+		1FC4F9CCFF75214D1DF288AB /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */; };
 		1FD0623BED561571CA419701 /* manrope_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31F400E05964507F7757EC9F /* manrope_medium.ttf */; };
 		233CF522A6EB18C691CE50FC /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331164EA984F0DD0D8238A0 /* AppTheme.swift */; };
 		2C6AA03CA5F2BADF85460B80 /* MeditationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9794D457AC27A2279179B6C9 /* MeditationContent.swift */; };
 		2C999EA0C942F7256019921A /* card_bg_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E524691D415B1FB0866110FD /* card_bg_1.jpg */; };
 		30001926CEA2F68CDB9E2760 /* logo_ageev.png in Resources */ = {isa = PBXBuildFile; fileRef = CF015A0505836824038C28AE /* logo_ageev.png */; };
 		32B599B8F7CE3038CBE077EF /* MeditationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3330DA3A04C0F5273A66211 /* MeditationsView.swift */; };
+		33910B7C4C74E0F7AF9B53E2 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C1EDA407C70839E0A2212003 /* FirebaseCore */; };
 		39D07EDA3004D1E157D6C68D /* GlassComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD5B4953C10E88EB5502AEE /* GlassComponents.swift */; };
 		3C1D1CD0FEFFBC9FBC4448E7 /* manrope_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC4270488DCBE3A3749C40E1 /* manrope_regular.ttf */; };
 		420563732D9F5307CF4BE8EF /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BAEC10FAF113DE60987BE7 /* ThemeViewModel.swift */; };
 		43D786517E94A6C52B6C4066 /* manrope_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14A5212D11D86082D1FB2010 /* manrope_light.ttf */; };
 		484985A112F0133135B3386B /* mikhail_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB746C76FCCC707570D0A2D5 /* mikhail_portrait.jpg */; };
+		4FA99AB49DD9458CF0FAA269 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7B7BE5969A5DC13FDA1FAA /* FirebaseFirestore */; };
 		5BF655439FC2E73998B0A246 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */; };
 		6133B94D13196460C594EC23 /* playfair_display_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B884DAF1E9C9CAB58E734 /* playfair_display_semibold.ttf */; };
 		67CE9A79B93CFF85F2610162 /* SMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3CA4189963962D05888B80 /* SMAApp.swift */; };
+		681E42F4C3FEEFF934576E02 /* MusicContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB1CE746D15312A28F118C /* MusicContent.swift */; };
 		686D3499C88190AFBEF69BE3 /* card_bg_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D73D78B19FE9C6461C036D6 /* card_bg_4.jpg */; };
 		6C17894983FFEE2732CD910D /* card_bg_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E53C6C119F44D78660B9978 /* card_bg_8.jpg */; };
 		6D89F3039050374676318FE5 /* card_bg_10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5203BEFA065E4EEA87B858B8 /* card_bg_10.jpg */; };
@@ -45,6 +49,7 @@
 		A976E06A58D30CD962EE5C86 /* AffirmationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59788D65BB0F279B7043786F /* AffirmationsView.swift */; };
 		A9D51700F06B0E1037C44C88 /* SavedProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C77FBD8A173980CFFB6B3 /* SavedProgramsViewModel.swift */; };
 		AC3452FCD46AC50E60AB6418 /* translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 5ABCD83AE3FBE029B0A3A3A4 /* translations.json */; };
+		C6332D4147E8BAB9C3F3C851 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8D00D5A54BDDCAA2CA73A /* GIFView.swift */; };
 		C6E87318CFD6CE0EC2970B0B /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FF8DFB9624C4C07835BD0 /* Typography.swift */; };
 		CC2A034C21E84E061DC034BC /* playfair_display_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 644581000B9C55DB4200DC3E /* playfair_display_medium.ttf */; };
 		D28647E0DB527A8696161936 /* manrope_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 961839537D7953F5976870BE /* manrope_bold.ttf */; };
@@ -56,20 +61,23 @@
 		E135520F2FAF065E6AB1B10C /* playfair_display_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 571B5CD0A1B5345F678552C5 /* playfair_display_regular.ttf */; };
 		E403C0A3E2E11674D9ED8CA7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99B3AC9123BD236F5B63D38 /* HomeView.swift */; };
 		E4431084ACE0F499F26C5368 /* bg_meditations.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D209D1FB8A949A1283058C3 /* bg_meditations.jpg */; };
+		EF93BAA2FE634B75FC66E90E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93A98609DB149C59245BAFBA /* GoogleService-Info.plist */; };
 		F124D64754786E8E85CE7041 /* bg_home_top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0FE514614D6F1783FC226FE /* bg_home_top.jpg */; };
 		F54F4878407709CDD56A3E55 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 764F85A930C57309F1ECD492 /* app_icon.png */; };
-		293328714D8842EAB3589315 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D599BCCA34566A4BF58A0 /* GIFView.swift */; };
+		FD1DC40C4D70F68E1BEE107E /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4985241A1B70D1B0B9230F0F /* MusicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F1B884DAF1E9C9CAB58E734 /* playfair_display_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = playfair_display_semibold.ttf; sourceTree = "<group>"; };
 		14A5212D11D86082D1FB2010 /* manrope_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_light.ttf; sourceTree = "<group>"; };
 		16BC32DC00D026C6D2B7515B /* ProgramContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramContent.swift; sourceTree = "<group>"; };
+		24BB1CE746D15312A28F118C /* MusicContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicContent.swift; sourceTree = "<group>"; };
 		27CA5699304C0F1838D4A708 /* ReprogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprogramView.swift; sourceTree = "<group>"; };
 		31F400E05964507F7757EC9F /* manrope_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_medium.ttf; sourceTree = "<group>"; };
 		3E53C6C119F44D78660B9978 /* card_bg_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_8.jpg; sourceTree = "<group>"; };
 		4125646D9BC6212F5C62E03D /* playfair_display_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = playfair_display_bold.ttf; sourceTree = "<group>"; };
 		44EAEB38B6DE3E869D37C531 /* bg_player.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_player.jpg; sourceTree = "<group>"; };
+		4985241A1B70D1B0B9230F0F /* MusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicView.swift; sourceTree = "<group>"; };
 		5203BEFA065E4EEA87B858B8 /* card_bg_10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_10.jpg; sourceTree = "<group>"; };
 		534F7A71DF800608794E9BFA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		55A068238C835FDD68586428 /* MeditationPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationPlayerView.swift; sourceTree = "<group>"; };
@@ -88,9 +96,12 @@
 		8A74643F22D5EADF07789D9D /* bg_reprogram.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_reprogram.jpg; sourceTree = "<group>"; };
 		8BB78B6D029EDB9024809F7B /* card_bg_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_2.jpg; sourceTree = "<group>"; };
 		8C3CA4189963962D05888B80 /* SMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMAApp.swift; sourceTree = "<group>"; };
+		904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewModel.swift; sourceTree = "<group>"; };
 		9353BC52CA51854041381C18 /* Translations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
+		93A98609DB149C59245BAFBA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		961839537D7953F5976870BE /* manrope_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_bold.ttf; sourceTree = "<group>"; };
 		9794D457AC27A2279179B6C9 /* MeditationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationContent.swift; sourceTree = "<group>"; };
+		9AB8D00D5A54BDDCAA2CA73A /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		9B294A81C6CDDFA5617FC15D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D70FB479224DC8BC24BC2A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F4C77FBD8A173980CFFB6B3 /* SavedProgramsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProgramsViewModel.swift; sourceTree = "<group>"; };
@@ -115,8 +126,19 @@
 		ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC4270488DCBE3A3749C40E1 /* manrope_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_regular.ttf; sourceTree = "<group>"; };
 		FD2E25DC42588FDD65CF1784 /* bg_home.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_home.jpg; sourceTree = "<group>"; };
-		950D599BCCA34566A4BF58A0 /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37EA67D79CBCCF83371FA143 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33910B7C4C74E0F7AF9B53E2 /* FirebaseCore in Frameworks */,
+				4FA99AB49DD9458CF0FAA269 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		054024EFF1C5260A99E18F86 = {
@@ -131,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				5A8A9524080613A19EA065BC /* MeditationViewModel.swift */,
+				904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */,
 				9F4C77FBD8A173980CFFB6B3 /* SavedProgramsViewModel.swift */,
 				82BAEC10FAF113DE60987BE7 /* ThemeViewModel.swift */,
 			);
@@ -167,8 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				8D9E3AC874A96D2BF8B018AB /* Affirmations */,
+				7CF53C8A7747E5091F06C2FE /* Components */,
 				CA34F2D9CE8B823C244F202E /* Home */,
 				D5B21A157B304BAD1FE2DEBC /* Meditations */,
+				C3227D0E74AD07A08142AB09 /* Music */,
 				E8CBBA0ED6D2352374F8F799 /* Navigation */,
 				B8842BEB69E8D2D268B2A57C /* Reprogram */,
 				D43DC821B60B9B75BE2923FB /* Settings */,
@@ -190,6 +215,7 @@
 			children = (
 				7826A85F258FD78C556F1CEB /* AffirmationContent.swift */,
 				9794D457AC27A2279179B6C9 /* MeditationContent.swift */,
+				24BB1CE746D15312A28F118C /* MusicContent.swift */,
 				16BC32DC00D026C6D2B7515B /* ProgramContent.swift */,
 				9353BC52CA51854041381C18 /* Translations.swift */,
 			);
@@ -202,6 +228,14 @@
 				EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		7CF53C8A7747E5091F06C2FE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9AB8D00D5A54BDDCAA2CA73A /* GIFView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		8D9E3AC874A96D2BF8B018AB /* Affirmations */ = {
@@ -275,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */,
+				93A98609DB149C59245BAFBA /* GoogleService-Info.plist */,
 				5ABCD83AE3FBE029B0A3A3A4 /* translations.json */,
 				B3409C17FA82B70DE3DCC04D /* Fonts */,
 				3A837D1013BB1018A2531EBF /* Images */,
@@ -282,11 +317,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C3227D0E74AD07A08142AB09 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				4985241A1B70D1B0B9230F0F /* MusicView.swift */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		CA34F2D9CE8B823C244F202E /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				C99B3AC9123BD236F5B63D38 /* HomeView.swift */,
-				950D599BCCA34566A4BF58A0 /* GIFView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -348,6 +390,7 @@
 			buildPhases = (
 				F0A792984B6132723905F35F /* Sources */,
 				8CE056FE37F9F40F8ADD8B90 /* Resources */,
+				37EA67D79CBCCF83371FA143 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -355,6 +398,8 @@
 			);
 			name = SMA;
 			packageProductDependencies = (
+				C1EDA407C70839E0A2212003 /* FirebaseCore */,
+				8F7B7BE5969A5DC13FDA1FAA /* FirebaseFirestore */,
 			);
 			productName = SMA;
 			productReference = A278E5BE43D4CD7BFF959690 /* SMA.app */;
@@ -380,6 +425,9 @@
 			);
 			mainGroup = 054024EFF1C5260A99E18F86;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				80DF4664DEABE23CAED6AEE4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CE5FC8225A1932F84D87C08F /* Products */;
 			projectDirPath = "";
@@ -396,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99C0F5D60DFA25BCE5EE683B /* Assets.xcassets in Resources */,
+				EF93BAA2FE634B75FC66E90E /* GoogleService-Info.plist in Resources */,
 				F54F4878407709CDD56A3E55 /* app_icon.png in Resources */,
 				A3D5185A40F1E8B1D1B586D0 /* bg_affirmations.jpg in Resources */,
 				05E01D2375201502C4056D76 /* bg_home.jpg in Resources */,
@@ -440,6 +489,7 @@
 				233CF522A6EB18C691CE50FC /* AppTheme.swift in Sources */,
 				5BF655439FC2E73998B0A246 /* AudioPlayerManager.swift in Sources */,
 				7793C5A5FEBC61483D18A6CC /* ContentView.swift in Sources */,
+				C6332D4147E8BAB9C3F3C851 /* GIFView.swift in Sources */,
 				39D07EDA3004D1E157D6C68D /* GlassComponents.swift in Sources */,
 				E403C0A3E2E11674D9ED8CA7 /* HomeView.swift in Sources */,
 				2C6AA03CA5F2BADF85460B80 /* MeditationContent.swift in Sources */,
@@ -447,6 +497,9 @@
 				8FEA7944F06B5FB85431EB53 /* MeditationViewModel.swift in Sources */,
 				32B599B8F7CE3038CBE077EF /* MeditationsView.swift in Sources */,
 				7AE1AD839BEB3E48057ED108 /* Models.swift in Sources */,
+				681E42F4C3FEEFF934576E02 /* MusicContent.swift in Sources */,
+				FD1DC40C4D70F68E1BEE107E /* MusicView.swift in Sources */,
+				1FC4F9CCFF75214D1DF288AB /* MusicViewModel.swift in Sources */,
 				DA4092269B00FC07A210E394 /* ProgramContent.swift in Sources */,
 				DAA17D842E571AA2295D448A /* ReprogramView.swift in Sources */,
 				67CE9A79B93CFF85F2610162 /* SMAApp.swift in Sources */,
@@ -456,7 +509,6 @@
 				420563732D9F5307CF4BE8EF /* ThemeViewModel.swift in Sources */,
 				7B8EF8E09A4A03E138CE2638 /* Translations.swift in Sources */,
 				C6E87318CFD6CE0EC2970B0B /* Typography.swift in Sources */,
-				293328714D8842EAB3589315 /* GIFView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +656,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.levelup.manifestation.ru;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikhail.manifestation;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -626,7 +678,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.levelup.manifestation.ru;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikhail.manifestation;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -654,6 +706,30 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		80DF4664DEABE23CAED6AEE4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F7B7BE5969A5DC13FDA1FAA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80DF4664DEABE23CAED6AEE4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		C1EDA407C70839E0A2212003 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80DF4664DEABE23CAED6AEE4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 22E388EB9F20AB9C21A10184 /* Project object */;
 }
