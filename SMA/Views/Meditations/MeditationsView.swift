@@ -14,7 +14,10 @@ private let moodAreaMapping: [String: [LifeArea]] = [
 struct MeditationsView: View {
     @ObservedObject var viewModel: MeditationViewModel
     var initialMoodKey: String? = nil
+    @Binding var pendingMeditation: Meditation?
+    var onNavigateToHome: (() -> Void)? = nil
     @State private var selectedMeditation: Meditation?
+    @State private var openedFromHome = false
 
     private let cardImages = ["card_bg_1", "card_bg_2", "card_bg_3", "card_bg_4", "card_bg_5",
                                "card_bg_6", "card_bg_7", "card_bg_8", "card_bg_9", "card_bg_10"]
@@ -51,11 +54,31 @@ struct MeditationsView: View {
                 cardImage: meditationCardImage(meditation.id, index: 0),
                 gifName: meditationGifName(meditation.id),
                 coverUrl: MeditationContent.coverURL(meditation),
-                onBack: { selectedMeditation = nil }
+                onBack: {
+                    selectedMeditation = nil
+                    if openedFromHome {
+                        openedFromHome = false
+                        onNavigateToHome?()
+                    }
+                }
             )
             .toolbar(.hidden, for: .tabBar)
         } else {
             meditationListView
+                .onChange(of: pendingMeditation) { _, meditation in
+                    if let meditation {
+                        selectedMeditation = meditation
+                        openedFromHome = true
+                        pendingMeditation = nil
+                    }
+                }
+                .onAppear {
+                    if let meditation = pendingMeditation {
+                        selectedMeditation = meditation
+                        openedFromHome = true
+                        pendingMeditation = nil
+                    }
+                }
         }
     }
 

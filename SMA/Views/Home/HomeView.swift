@@ -10,6 +10,7 @@ struct HomeView: View {
     @ObservedObject var meditationVM: MeditationViewModel
     var onNavigateToReprogram: () -> Void
     var onNavigateToMeditations: () -> Void
+    var onMeditationTapped: (Meditation) -> Void = { _ in }
     var onMoodBubbleTapped: (String) -> Void = { _ in }
 
     @State private var showAffirmations = false
@@ -147,7 +148,7 @@ struct HomeView: View {
                                 HStack(spacing: 12) {
                                     ForEach(Array(popularMeditations.enumerated()), id: \.element.id) { index, meditation in
                                         PopularMeditationCard(meditation: meditation, index: index)
-                                            .onTapGesture { onNavigateToMeditations() }
+                                            .onTapGesture { onMeditationTapped(meditation) }
                                     }
                                 }
                                 .padding(.horizontal, 24)
