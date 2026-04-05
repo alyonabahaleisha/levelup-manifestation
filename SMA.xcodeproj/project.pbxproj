@@ -14,8 +14,10 @@
 		1FC4F9CCFF75214D1DF288AB /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */; };
 		1FD0623BED561571CA419701 /* manrope_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31F400E05964507F7757EC9F /* manrope_medium.ttf */; };
 		233CF522A6EB18C691CE50FC /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6331164EA984F0DD0D8238A0 /* AppTheme.swift */; };
+		246DCB4FEF09A1FE2C320449 /* ClubMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116B8B00D801FF973D7CFC1 /* ClubMapView.swift */; };
 		2C6AA03CA5F2BADF85460B80 /* MeditationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9794D457AC27A2279179B6C9 /* MeditationContent.swift */; };
 		2C999EA0C942F7256019921A /* card_bg_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E524691D415B1FB0866110FD /* card_bg_1.jpg */; };
+		2D6013B347D4815083EAC6FE /* ClubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */; };
 		30001926CEA2F68CDB9E2760 /* logo_ageev.png in Resources */ = {isa = PBXBuildFile; fileRef = CF015A0505836824038C28AE /* logo_ageev.png */; };
 		32B599B8F7CE3038CBE077EF /* MeditationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3330DA3A04C0F5273A66211 /* MeditationsView.swift */; };
 		33910B7C4C74E0F7AF9B53E2 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C1EDA407C70839E0A2212003 /* FirebaseCore */; };
@@ -24,7 +26,9 @@
 		420563732D9F5307CF4BE8EF /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BAEC10FAF113DE60987BE7 /* ThemeViewModel.swift */; };
 		43D786517E94A6C52B6C4066 /* manrope_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14A5212D11D86082D1FB2010 /* manrope_light.ttf */; };
 		484985A112F0133135B3386B /* mikhail_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB746C76FCCC707570D0A2D5 /* mikhail_portrait.jpg */; };
+		4AB31A11FB8FABAEA4BE8C67 /* ClubsMapSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2727326EFF6B9E51402C023 /* ClubsMapSection.swift */; };
 		4FA99AB49DD9458CF0FAA269 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7B7BE5969A5DC13FDA1FAA /* FirebaseFirestore */; };
+		597675131AD73D09DCDD4141 /* ClubsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F0182EC0B2203FF767A85 /* ClubsViewModel.swift */; };
 		5BF655439FC2E73998B0A246 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */; };
 		6133B94D13196460C594EC23 /* playfair_display_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B884DAF1E9C9CAB58E734 /* playfair_display_semibold.ttf */; };
 		67CE9A79B93CFF85F2610162 /* SMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3CA4189963962D05888B80 /* SMAApp.swift */; };
@@ -49,6 +53,7 @@
 		A976E06A58D30CD962EE5C86 /* AffirmationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59788D65BB0F279B7043786F /* AffirmationsView.swift */; };
 		A9D51700F06B0E1037C44C88 /* SavedProgramsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C77FBD8A173980CFFB6B3 /* SavedProgramsViewModel.swift */; };
 		AC3452FCD46AC50E60AB6418 /* translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 5ABCD83AE3FBE029B0A3A3A4 /* translations.json */; };
+		C0FBAC1FDF69484F2D878FD2 /* ClubAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68543CBF8F94100B409D1D1 /* ClubAnnotation.swift */; };
 		C6332D4147E8BAB9C3F3C851 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB8D00D5A54BDDCAA2CA73A /* GIFView.swift */; };
 		C6E87318CFD6CE0EC2970B0B /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FF8DFB9624C4C07835BD0 /* Typography.swift */; };
 		CC2A034C21E84E061DC034BC /* playfair_display_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 644581000B9C55DB4200DC3E /* playfair_display_medium.ttf */; };
@@ -64,11 +69,13 @@
 		EF93BAA2FE634B75FC66E90E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93A98609DB149C59245BAFBA /* GoogleService-Info.plist */; };
 		F124D64754786E8E85CE7041 /* bg_home_top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0FE514614D6F1783FC226FE /* bg_home_top.jpg */; };
 		F54F4878407709CDD56A3E55 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 764F85A930C57309F1ECD492 /* app_icon.png */; };
+		FC293FBA855C6038A93717CF /* ClubsMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96C6C3E57589F5DFB0E5649 /* ClubsMapScreen.swift */; };
 		FD1DC40C4D70F68E1BEE107E /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4985241A1B70D1B0B9230F0F /* MusicView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F1B884DAF1E9C9CAB58E734 /* playfair_display_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = playfair_display_semibold.ttf; sourceTree = "<group>"; };
+		1116B8B00D801FF973D7CFC1 /* ClubMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubMapView.swift; sourceTree = "<group>"; };
 		14A5212D11D86082D1FB2010 /* manrope_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_light.ttf; sourceTree = "<group>"; };
 		16BC32DC00D026C6D2B7515B /* ProgramContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramContent.swift; sourceTree = "<group>"; };
 		24BB1CE746D15312A28F118C /* MusicContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicContent.swift; sourceTree = "<group>"; };
@@ -109,17 +116,22 @@
 		A1493069238DB7B7D2EEE830 /* bg_affirmations.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_affirmations.jpg; sourceTree = "<group>"; };
 		A278E5BE43D4CD7BFF959690 /* SMA.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3330DA3A04C0F5273A66211 /* MeditationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsView.swift; sourceTree = "<group>"; };
+		A33F0182EC0B2203FF767A85 /* ClubsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsViewModel.swift; sourceTree = "<group>"; };
+		A68543CBF8F94100B409D1D1 /* ClubAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubAnnotation.swift; sourceTree = "<group>"; };
+		ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubRepository.swift; sourceTree = "<group>"; };
 		B0FE514614D6F1783FC226FE /* bg_home_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_home_top.jpg; sourceTree = "<group>"; };
 		B16A3E240AE5188035FF9239 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		B81FF8DFB9624C4C07835BD0 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		B9C36C5421A4ED729FFD2379 /* manrope_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_semibold.ttf; sourceTree = "<group>"; };
 		C017B144E32532CA46726DA1 /* card_bg_9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_9.jpg; sourceTree = "<group>"; };
+		C2727326EFF6B9E51402C023 /* ClubsMapSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsMapSection.swift; sourceTree = "<group>"; };
 		C5A7FB823AA8F192227C40A6 /* card_bg_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_3.jpg; sourceTree = "<group>"; };
 		C99B3AC9123BD236F5B63D38 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CB746C76FCCC707570D0A2D5 /* mikhail_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mikhail_portrait.jpg; sourceTree = "<group>"; };
 		CF015A0505836824038C28AE /* logo_ageev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ageev.png; sourceTree = "<group>"; };
 		D172A74E4AA93E2B11F68D0E /* card_bg_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_6.jpg; sourceTree = "<group>"; };
 		D2D93E90ECEA1DB834E8DC94 /* card_bg_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_5.jpg; sourceTree = "<group>"; };
+		D96C6C3E57589F5DFB0E5649 /* ClubsMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsMapScreen.swift; sourceTree = "<group>"; };
 		E524691D415B1FB0866110FD /* card_bg_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_1.jpg; sourceTree = "<group>"; };
 		E7B28E5102F175DB2C65F996 /* card_bg_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_7.jpg; sourceTree = "<group>"; };
 		EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
@@ -152,6 +164,7 @@
 		106FE30C8B23696D6574605D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A33F0182EC0B2203FF767A85 /* ClubsViewModel.swift */,
 				5A8A9524080613A19EA065BC /* MeditationViewModel.swift */,
 				904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */,
 				9F4C77FBD8A173980CFFB6B3 /* SavedProgramsViewModel.swift */,
@@ -214,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				7826A85F258FD78C556F1CEB /* AffirmationContent.swift */,
+				ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */,
 				9794D457AC27A2279179B6C9 /* MeditationContent.swift */,
 				24BB1CE746D15312A28F118C /* MusicContent.swift */,
 				16BC32DC00D026C6D2B7515B /* ProgramContent.swift */,
@@ -328,6 +342,10 @@
 		CA34F2D9CE8B823C244F202E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A68543CBF8F94100B409D1D1 /* ClubAnnotation.swift */,
+				1116B8B00D801FF973D7CFC1 /* ClubMapView.swift */,
+				D96C6C3E57589F5DFB0E5649 /* ClubsMapScreen.swift */,
+				C2727326EFF6B9E51402C023 /* ClubsMapSection.swift */,
 				C99B3AC9123BD236F5B63D38 /* HomeView.swift */,
 			);
 			path = Home;
@@ -414,6 +432,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					ADA59A56ADB2D32D128C08FD = {
+						DevelopmentTeam = T38J3889P8;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = A92B6475A9B3429766410F77 /* Build configuration list for PBXProject "SMA" */;
@@ -488,6 +510,12 @@
 				A976E06A58D30CD962EE5C86 /* AffirmationsView.swift in Sources */,
 				233CF522A6EB18C691CE50FC /* AppTheme.swift in Sources */,
 				5BF655439FC2E73998B0A246 /* AudioPlayerManager.swift in Sources */,
+				C0FBAC1FDF69484F2D878FD2 /* ClubAnnotation.swift in Sources */,
+				246DCB4FEF09A1FE2C320449 /* ClubMapView.swift in Sources */,
+				2D6013B347D4815083EAC6FE /* ClubRepository.swift in Sources */,
+				FC293FBA855C6038A93717CF /* ClubsMapScreen.swift in Sources */,
+				4AB31A11FB8FABAEA4BE8C67 /* ClubsMapSection.swift in Sources */,
+				597675131AD73D09DCDD4141 /* ClubsViewModel.swift in Sources */,
 				7793C5A5FEBC61483D18A6CC /* ContentView.swift in Sources */,
 				C6332D4147E8BAB9C3F3C851 /* GIFView.swift in Sources */,
 				39D07EDA3004D1E157D6C68D /* GlassComponents.swift in Sources */,
@@ -644,12 +672,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T38J3889P8;
 				INFOPLIST_FILE = SMA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Школа Михаила Агеева";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -666,12 +697,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T38J3889P8;
 				INFOPLIST_FILE = SMA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Школа Михаила Агеева";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (

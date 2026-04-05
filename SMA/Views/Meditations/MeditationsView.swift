@@ -33,7 +33,7 @@ struct MeditationsView: View {
         "cleansing": "med_cleansing"
     ]
 
-    private let meditationGifOverrides: Set<String> = ["divine_dna"]
+    private let meditationGifOverrides: Set<String> = []
 
     private func meditationCardImage(_ id: String, index: Int) -> String {
         meditationImageOverrides[id] ?? cardImages[index % cardImages.count]
@@ -53,6 +53,7 @@ struct MeditationsView: View {
                 coverUrl: MeditationContent.coverURL(meditation),
                 onBack: { selectedMeditation = nil }
             )
+            .toolbar(.hidden, for: .tabBar)
         } else {
             meditationListView
         }
@@ -149,12 +150,20 @@ private struct MeditationVisualCard: View {
         ZStack(alignment: .bottom) {
             // Background image: prefer remote coverUrl, fall back to local asset/GIF
             if let urlString = coverUrl, let url = URL(string: urlString) {
-                AsyncImage(url: url) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image.resizable().scaledToFill()
-                    default:
-                        localImage
+                GeometryReader { geo in
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image.resizable().scaledToFill()
+                                .frame(width: geo.size.width, height: 260)
+                                .clipped()
+                        case .failure:
+                            localImage
+                        case .empty:
+                            dominantColor
+                        @unknown default:
+                            dominantColor
+                        }
                     }
                 }
                 .frame(height: 260)

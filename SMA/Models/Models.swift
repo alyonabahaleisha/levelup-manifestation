@@ -14,11 +14,30 @@ struct HiddenProgram: Identifiable {
     let area: LifeArea
 }
 
-struct Meditation: Identifiable {
+struct Meditation: Identifiable, Hashable {
     let id: String
     let title: String
     let description: String
     let area: LifeArea
     let fileName: String
     let durationSeconds: Int
+}
+
+struct MusicTrack: Identifiable {
+    let id: String
+    let title: String
+    let artist: String
+    let fileName: String
+    let durationSeconds: Int
+}
+
+struct Club: Identifiable {
+    let id: String
+    let country: String
+    let city: String
+    let region: String
+    let leaderName: String
+    let telegramUrl: String
+    let latitude: Double
+    let longitude: Double
 }

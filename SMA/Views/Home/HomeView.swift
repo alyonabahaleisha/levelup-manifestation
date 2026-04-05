@@ -15,6 +15,8 @@ struct HomeView: View {
     @State private var showAffirmations = false
     @State private var affirmationStartText: String? = nil
     @State private var currentAffirmationPage: Int? = 0
+    @State private var showClubsMap = false
+    @State private var clubsVM = ClubsViewModel()
 
     private let cardImages = ["card_bg_1", "card_bg_2", "card_bg_3", "card_bg_4", "card_bg_5",
                                "card_bg_6", "card_bg_7", "card_bg_8", "card_bg_9", "card_bg_10"]
@@ -33,7 +35,7 @@ struct HomeView: View {
         "cleansing": "med_cleansing"
     ]
 
-    private let meditationGifOverrides: Set<String> = ["divine_dna"]
+    private let meditationGifOverrides: Set<String> = []
 
     private func meditationCardImage(_ id: String, index: Int) -> String {
         meditationImageOverrides[id] ?? cardImages[index % cardImages.count]
@@ -154,9 +156,36 @@ struct HomeView: View {
                         .padding(.top, 32)
                     }
 
-                    Spacer().frame(height: 40)
+                    // ── Clubs map section ────────────────────────────────────
+                    Group {
+                        switch clubsVM.uiState {
+                        case .loading:
+                            ClubsMapSectionSkeleton()
+                        case .success(let clubs, _):
+                            if clubs.isEmpty {
+                                ClubsMapSectionEmpty()
+                            } else {
+                                ClubsMapSection(
+                                    clubs: clubs,
+                                    onExpandMap: { showClubsMap = true }
+                                )
+                            }
+                        case .error:
+                            ClubsMapSectionError(onRetry: { clubsVM.fetch() })
+                        }
+                    }
+                    .padding(.top, 32)
+
+                    Spacer().frame(height: 140)
                 }
             }
+        }
+        .fullScreenCover(isPresented: $showClubsMap) {
+            ClubsMapScreen(
+                clubs: clubsVM.clubs,
+                isLoading: clubsVM.isLoading,
+                onDismiss: { showClubsMap = false }
+            )
         }
         .fullScreenCover(isPresented: $showAffirmations) {
             ZStack(alignment: .topLeading) {
@@ -385,7 +414,7 @@ private struct PopularMeditationCard: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(meditation.title)
-                    .font(AppTypography.bodyMedium)
+                    .font(AppTypography.headingSmall)
                     .foregroundColor(.white)
                     .lineLimit(2)
                 Text("\(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
