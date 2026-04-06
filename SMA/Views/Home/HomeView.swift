@@ -12,7 +12,9 @@ struct HomeView: View {
     var onNavigateToMeditations: () -> Void
     var onMeditationTapped: (Meditation) -> Void = { _ in }
     var onMoodBubbleTapped: (String) -> Void = { _ in }
+    @ObservedObject var themeViewModel: ThemeViewModel
 
+    @State private var showSettings = false
     @State private var showAffirmations = false
     @State private var affirmationStartText: String? = nil
     @State private var currentAffirmationPage: Int? = 0
@@ -102,6 +104,15 @@ struct HomeView: View {
                         }
 
                         Spacer()
+
+                        Button {
+                            showSettings = true
+                        } label: {
+                            Image(systemName: "gearshape")
+                                .font(.system(size: 20))
+                                .foregroundColor(.white.opacity(0.6))
+                                .frame(width: 40, height: 40)
+                        }
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 4)
@@ -181,6 +192,9 @@ struct HomeView: View {
                 }
             }
         }
+        .sheet(isPresented: $showSettings) {
+            SettingsView(themeViewModel: themeViewModel)
+        }
         .fullScreenCover(isPresented: $showClubsMap) {
             ClubsMapScreen(
                 clubs: clubsVM.clubs,
@@ -190,7 +204,7 @@ struct HomeView: View {
         }
         .fullScreenCover(isPresented: $showAffirmations) {
             ZStack(alignment: .topLeading) {
-                AffirmationsView(startText: affirmationStartText)
+                AffirmationsView()
                 Button {
                     showAffirmations = false
                 } label: {

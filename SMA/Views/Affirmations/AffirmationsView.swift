@@ -3,8 +3,6 @@ import SwiftUI
 private let cardBlue = Color(hex: "154C6C")
 
 struct AffirmationsView: View {
-    var startText: String? = nil
-    @State private var currentPage = 0
     @State private var affirmations: [Affirmation] = []
     
     var body: some View {
@@ -12,17 +10,15 @@ struct AffirmationsView: View {
             cardBlue.ignoresSafeArea()
 
             // Vertical pager
-            TabView(selection: $currentPage) {
-                ForEach(Array(affirmations.enumerated()), id: \.element.id) { index, affirmation in
-                    VStack {
-                        Spacer().frame(height: 80)
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack(spacing: 0) {
+                    ForEach(Array(affirmations.enumerated()), id: \.element.id) { index, affirmation in
+                        GeometryReader { geo in
+                            let len = affirmation.text.count
+                            let fontSize: CGFloat = len < 60 ? 26 : len < 120 ? 22 : len < 200 ? 18 : 16
 
-                        ZStack {
                             VStack {
                                 Spacer()
-
-                                let len = affirmation.text.count
-                                let fontSize: CGFloat = len < 60 ? 26 : len < 120 ? 22 : len < 200 ? 18 : 16
 
                                 Text(affirmation.text)
                                     .font(.custom("PlayfairDisplay-Regular", size: fontSize))
@@ -47,28 +43,21 @@ struct AffirmationsView: View {
                                 }
                                 .padding(.bottom, 20)
                             }
-                            .frame(height: 480)
-                            .padding(.horizontal, 28)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                            .background(cardBlue.opacity(0.85))
+                            .clipShape(RoundedRectangle(cornerRadius: 36))
                         }
-                        .frame(height: 480)
-                        .background(cardBlue.opacity(0.85))
-                        .clipShape(RoundedRectangle(cornerRadius: 36))
+                        .containerRelativeFrame(.vertical)
                         .padding(.horizontal, 24)
-
-                        Spacer()
+                        .id(index)
                     }
-                    .tag(index)
                 }
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .scrollTargetBehavior(.paging)
         }
         .onAppear {
             if affirmations.isEmpty {
                 affirmations = AffirmationContent.feed()
-            }
-            if let text = startText,
-               let idx = affirmations.firstIndex(where: { $0.text == text }) {
-                currentPage = idx
             }
         }
     }

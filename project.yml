@@ -52,6 +52,9 @@ targets:
           - manrope_medium.ttf
           - manrope_semibold.ttf
           - manrope_bold.ttf
+        CFBundleDevelopmentRegion: ru
+        CFBundleLocalizations:
+          - ru
         UIBackgroundModes:
           - audio
 schemes:

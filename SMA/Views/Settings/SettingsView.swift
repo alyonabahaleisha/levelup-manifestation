@@ -6,14 +6,8 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { geo in
-                Image("bg_home")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geo.size.width, height: geo.size.height)
-                    .clipped()
-            }
-            .ignoresSafeArea()
+            Color(hex: "154C6C")
+                .ignoresSafeArea()
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
@@ -27,7 +21,7 @@ struct SettingsView: View {
                     settingsSection(title: Translations.ui("notificationsSection")) {
                         Text("Уведомления скоро будут доступны")
                             .font(AppTypography.bodyMedium)
-                            .foregroundColor(Color(hex: "5A5070"))
+                            .foregroundColor(.white.opacity(0.55))
                             .padding(16)
                     }
                     
@@ -50,7 +44,7 @@ struct SettingsView: View {
         HStack {
             Text(label)
                 .font(AppTypography.bodyLarge)
-                .foregroundColor(Color(hex: "2A2A3A"))
+                .foregroundColor(.white)
             Spacer()
             if currentMode == mode {
                 Image(systemName: "checkmark")
@@ -67,7 +61,7 @@ struct SettingsView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(AppTypography.labelSmall)
-                .foregroundColor(Color(hex: "5A5070"))
+                .foregroundColor(.white.opacity(0.55))
                 .padding(.horizontal, 24)
             
             GlassCard(cornerRadius: 22) {

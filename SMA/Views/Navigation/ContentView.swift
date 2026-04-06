@@ -8,64 +8,118 @@ struct ContentView: View {
     @State private var selectedTab = 0
     @State private var pendingMoodKey: String? = nil
     @State private var pendingMeditation: Meditation? = nil
+    @State private var isMeditationPlayerOpen = false
+
+    private var showMiniPlayer: Bool {
+        let state = meditationVM.playbackState
+        guard meditationVM.currentTitle != nil else { return false }
+        guard state == .playing || state == .paused || state == .buffering else { return false }
+        return !isMeditationPlayerOpen
+    }
+
+    private func handleMiniPlayerTap() {
+        switch meditationVM.contentType {
+        case .music:
+            selectedTab = 3
+        case .meditation:
+            if let id = meditationVM.currentMeditationId,
+               let meditation = meditationVM.allMeditations().first(where: { $0.id == id }) {
+                pendingMeditation = meditation
+                selectedTab = 2
+            }
+        case .none:
+            if let id = meditationVM.currentMeditationId,
+               let meditation = meditationVM.allMeditations().first(where: { $0.id == id }) {
+                pendingMeditation = meditation
+                selectedTab = 2
+            }
+        }
+    }
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView(
-                savedProgramsVM: savedProgramsVM,
-                meditationVM: meditationVM,
-                onNavigateToReprogram: { selectedTab = 3 },
-                onNavigateToMeditations: { selectedTab = 1 },
-                onMeditationTapped: { meditation in
-                    pendingMeditation = meditation
-                    selectedTab = 1
-                },
-                onMoodBubbleTapped: { moodKey in
-                    pendingMoodKey = moodKey
-                    selectedTab = 1
-                }
-            )
-            .tabItem {
-                Image(systemName: "heart")
-                Text(Translations.ui("homeTab"))
-            }
-            .tag(0)
-
-            MeditationsView(viewModel: meditationVM, initialMoodKey: pendingMoodKey, pendingMeditation: $pendingMeditation, onNavigateToHome: { selectedTab = 0 })
+        ZStack(alignment: .bottom) {
+            TabView(selection: $selectedTab) {
+                HomeView(
+                    savedProgramsVM: savedProgramsVM,
+                    meditationVM: meditationVM,
+                    onNavigateToReprogram: { selectedTab = 4 },
+                    onNavigateToMeditations: { selectedTab = 2 },
+                    onMeditationTapped: { meditation in
+                        pendingMeditation = meditation
+                        selectedTab = 2
+                    },
+                    onMoodBubbleTapped: { moodKey in
+                        pendingMoodKey = moodKey
+                        selectedTab = 2
+                    },
+                    themeViewModel: themeViewModel
+                )
                 .tabItem {
-                    Image(systemName: "headphones")
+                    Image(systemName: "sun.max")
+                    Text(Translations.ui("homeTab"))
+                }
+                .tag(0)
+
+                AffirmationsView()
+                    .tabItem {
+                        Image(systemName: "quote.bubble")
+                        Text(Translations.ui("affirmationsTab"))
+                    }
+                    .tag(1)
+
+                MeditationsView(
+                    viewModel: meditationVM,
+                    initialMoodKey: pendingMoodKey,
+                    pendingMeditation: $pendingMeditation,
+                    onNavigateToHome: { selectedTab = 0 },
+                    isMeditationPlayerOpen: $isMeditationPlayerOpen
+                )
+                .tabItem {
+                    Image(systemName: "moon.stars")
                     Text(Translations.ui("meditationsTab"))
-                }
-                .tag(1)
-
-            MusicView(viewModel: musicVM)
-                .tabItem {
-                    Image(systemName: "music.note")
-                    Text(Translations.ui("musicTab"))
                 }
                 .tag(2)
 
-            ReprogramView(savedProgramsVM: savedProgramsVM)
-                .tabItem {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                    Text(Translations.ui("reprogramTab"))
-                }
-                .tag(3)
+                MusicView(viewModel: musicVM)
+                    .tabItem {
+                        Image(systemName: "music.note")
+                        Text(Translations.ui("musicTab"))
+                    }
+                    .tag(3)
 
-            SettingsView(themeViewModel: themeViewModel)
-                .tabItem {
-                    Image(systemName: "gearshape")
-                    Text(Translations.ui("settingsTitle"))
+                ReprogramView(savedProgramsVM: savedProgramsVM)
+                    .tabItem {
+                        Image(systemName: "brain.head.profile")
+                        Text(Translations.ui("reprogramTab"))
+                    }
+                    .tag(4)
+
+            }
+            .tint(.white.opacity(0.9))
+            .statusBarHidden(true)
+            .onChange(of: selectedTab) { _, newTab in
+                if newTab != 2 {
+                    pendingMoodKey = nil
+                    pendingMeditation = nil
                 }
-                .tag(4)
-        }
-        .tint(ToneTheme.default.accent)
-        .statusBarHidden(true)
-        .onChange(of: selectedTab) { _, newTab in
-            if newTab != 1 {
-                pendingMoodKey = nil
-                pendingMeditation = nil
+            }
+
+            if showMiniPlayer {
+                MiniPlayerView(
+                    title: meditationVM.currentTitle ?? "",
+                    contentType: meditationVM.contentType ?? .meditation,
+                    isPlaying: meditationVM.playbackState == .playing,
+                    isBuffering: meditationVM.playbackState == .buffering,
+                    progress: meditationVM.duration > 0 ? meditationVM.currentPosition / meditationVM.duration : 0,
+                    coverUrl: meditationVM.currentCoverUrl,
+                    onTogglePlayPause: { meditationVM.togglePlayPause() },
+                    onDismiss: { meditationVM.stop() },
+                    onClick: { handleMiniPlayerTap() }
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .padding(.bottom, 49) // above tab bar
             }
         }
+        .animation(.easeInOut(duration: 0.25), value: showMiniPlayer)
     }
 }
