@@ -111,17 +111,19 @@ struct MeditationsView: View {
 
             VStack(spacing: 0) {
                 // Header
-                Text(headerTitle)
-                    .font(AppTypography.headingLarge)
-                    .foregroundColor(.white)
-                    .padding(.top, 60)
-                    .padding(.bottom, 4)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(headerTitle)
+                        .font(AppTypography.headingLarge)
+                        .foregroundColor(.white)
 
-                // Meditation count
-                Text("\(filteredMeditations.count) \(Translations.ui("meditationsCountLabel"))")
-                    .font(AppTypography.bodyMedium)
-                    .foregroundColor(.white.opacity(0.55))
-                    .padding(.top, 4)
+                    Text("\(filteredMeditations.count) \(Translations.ui("meditationsCountLabel"))")
+                        .font(AppTypography.bodyMedium)
+                        .foregroundColor(.white.opacity(0.55))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 24)
+                .padding(.top, 60)
+                .padding(.bottom, 4)
 
                 // Meditation list
                 ScrollView {
@@ -207,23 +209,11 @@ private struct MeditationVisualCard: View {
                 endPoint: .bottom
             )
 
-            // Top badges
+            // Duration badge
             VStack {
                 HStack {
-                    // Area badge
-                    Text(Translations.lifeAreaLabel(meditation.area))
-                        .font(AppTypography.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .shadow(color: .black.opacity(0.5), radius: 1, x: 0, y: 1)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(.black.opacity(0.4))
-                        .clipShape(Capsule())
-
                     Spacer()
 
-                    // Duration badge
                     Text("\(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
                         .font(AppTypography.caption)
                         .fontWeight(.semibold)
@@ -258,17 +248,6 @@ private struct MeditationVisualCard: View {
                     }
                 }
 
-                Spacer()
-
-                // Play button
-                Circle()
-                    .fill(.white.opacity(isActive ? 0.35 : 0.2))
-                    .frame(width: 44, height: 44)
-                    .overlay(
-                        Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
-                    )
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
