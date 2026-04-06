@@ -18,6 +18,7 @@ struct HomeView: View {
     @State private var currentAffirmationPage: Int? = 0
     @State private var showClubsMap = false
     @State private var clubsVM = ClubsViewModel()
+    @State private var randomAffirmation: Affirmation? = nil
 
     private let cardImages = ["card_bg_1", "card_bg_2", "card_bg_3", "card_bg_4", "card_bg_5",
                                "card_bg_6", "card_bg_7", "card_bg_8", "card_bg_9", "card_bg_10"]
@@ -73,7 +74,6 @@ struct HomeView: View {
     }
 
     var body: some View {
-        let randomAffirmation = AffirmationContent.feed().randomElement()
         let popularMeditations = meditationVM.allMeditations().filter { med in
             Translations.popularMeditations().contains { $0.id == med.id }
         }
@@ -203,6 +203,11 @@ struct HomeView: View {
                 }
                 .padding(.top, 56)
                 .padding(.leading, 20)
+            }
+        }
+        .onAppear {
+            if randomAffirmation == nil {
+                randomAffirmation = AffirmationContent.feed().randomElement()
             }
         }
     }
@@ -388,18 +393,11 @@ private struct PopularMeditationCard: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             if let urlString = coverUrl, let url = URL(string: urlString) {
-                AsyncImage(url: url) { phase in
-                    switch phase {
-                    case .success(let image):
-                        image.resizable().scaledToFill()
-                    default:
-                        fallbackImage
-                    }
-                }
-                .frame(width: 200, height: 160)
-                .clipped()
+                CachedAsyncImage(url: url)
+                    .frame(width: 200, height: 160)
+                    .clipped()
             } else {
-                fallbackImage
+                dominantColor
             }
 
             LinearGradient(

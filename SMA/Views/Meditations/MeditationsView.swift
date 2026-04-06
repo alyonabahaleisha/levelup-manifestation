@@ -47,23 +47,7 @@ struct MeditationsView: View {
     }
 
     var body: some View {
-        if let meditation = selectedMeditation {
-            MeditationPlayerView(
-                meditation: meditation,
-                viewModel: viewModel,
-                cardImage: meditationCardImage(meditation.id, index: 0),
-                gifName: meditationGifName(meditation.id),
-                coverUrl: MeditationContent.coverURL(meditation),
-                onBack: {
-                    selectedMeditation = nil
-                    if openedFromHome {
-                        openedFromHome = false
-                        onNavigateToHome?()
-                    }
-                }
-            )
-            .toolbar(.hidden, for: .tabBar)
-        } else {
+        ZStack {
             meditationListView
                 .onChange(of: pendingMeditation) { _, meditation in
                     if let meditation {
@@ -79,6 +63,24 @@ struct MeditationsView: View {
                         pendingMeditation = nil
                     }
                 }
+
+            if let meditation = selectedMeditation {
+                MeditationPlayerView(
+                    meditation: meditation,
+                    viewModel: viewModel,
+                    cardImage: meditationCardImage(meditation.id, index: 0),
+                    gifName: meditationGifName(meditation.id),
+                    coverUrl: MeditationContent.coverURL(meditation),
+                    onBack: {
+                        selectedMeditation = nil
+                        if openedFromHome {
+                            openedFromHome = false
+                            onNavigateToHome?()
+                        }
+                    }
+                )
+                .toolbar(.hidden, for: .tabBar)
+            }
         }
     }
 
@@ -136,8 +138,6 @@ struct MeditationsView: View {
                                 meditation: meditation,
                                 isActive: isActive,
                                 isPlaying: isPlaying,
-                                cardImage: meditationCardImage(meditation.id, index: index),
-                                gifName: meditationGifName(meditation.id),
                                 coverUrl: MeditationContent.coverURL(meditation),
                                 areaColor: areaColor(meditation.area)
                             )
@@ -159,8 +159,6 @@ private struct MeditationVisualCard: View {
     let meditation: Meditation
     let isActive: Bool
     let isPlaying: Bool
-    let cardImage: String
-    var gifName: String? = nil
     var coverUrl: String? = nil
     let areaColor: Color
 
@@ -173,28 +171,17 @@ private struct MeditationVisualCard: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            // Background image: prefer remote coverUrl, fall back to local asset/GIF
+            // Background image: remote coverUrl with color placeholder
             if let urlString = coverUrl, let url = URL(string: urlString) {
                 GeometryReader { geo in
-                    AsyncImage(url: url) { phase in
-                        switch phase {
-                        case .success(let image):
-                            image.resizable().scaledToFill()
-                                .frame(width: geo.size.width, height: 260)
-                                .clipped()
-                        case .failure:
-                            localImage
-                        case .empty:
-                            dominantColor
-                        @unknown default:
-                            dominantColor
-                        }
-                    }
+                    CachedAsyncImage(url: url)
+                        .frame(width: geo.size.width, height: 260)
+                        .clipped()
                 }
                 .frame(height: 260)
                 .clipped()
             } else {
-                localImage
+                dominantColor
             }
 
             // Color gradient overlay — intense bottom third
@@ -261,71 +248,8 @@ private struct MeditationVisualCard: View {
         .onAppear {
             if let color = coverColorFromFirestore {
                 dominantColor = color
-            } else if let uiImage = UIImage(named: cardImage) {
-                extractDominantColor(from: uiImage) { color in
-                    dominantColor = color
-                }
             }
         }
     }
 
-    private func extractRemoteColor(from url: URL) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            guard let data = try? Data(contentsOf: url),
-                  let uiImage = UIImage(data: data),
-                  let cgImage = uiImage.cgImage else { return }
-            let colorSpace = CGColorSpaceCreateDeviceRGB()
-            var pixel: [UInt8] = [0, 0, 0, 0]
-            guard let context = CGContext(
-                data: &pixel, width: 1, height: 1,
-                bitsPerComponent: 8, bytesPerRow: 4,
-                space: colorSpace,
-                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-            ) else { return }
-            let h = cgImage.height
-            let cropRect = CGRect(x: 0, y: h * 2 / 3, width: cgImage.width, height: h / 3)
-            guard let cropped = cgImage.cropping(to: cropRect) else { return }
-            context.draw(cropped, in: CGRect(x: 0, y: 0, width: 1, height: 1))
-            let r = CGFloat(pixel[0]) / 255.0 * 0.55
-            let g = CGFloat(pixel[1]) / 255.0 * 0.55
-            let b = CGFloat(pixel[2]) / 255.0 * 0.55
-            DispatchQueue.main.async { dominantColor = Color(red: r, green: g, blue: b) }
-        }
-    }
-
-    @ViewBuilder
-    private var localImage: some View {
-        if let gif = gifName {
-            GIFView(gifName: gif)
-                .frame(height: 260)
-                .clipped()
-        } else {
-            Image(cardImage)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 260)
-                .clipped()
-        }
-    }
-}
-
-private func extractDominantColor(from uiImage: UIImage, completion: @escaping (Color) -> Void) {
-    DispatchQueue.global(qos: .userInitiated).async {
-        guard let ciImage = CIImage(image: uiImage) else { return }
-        let filter = CIFilter(name: "CIAreaAverage", parameters: [
-            kCIInputImageKey: ciImage,
-            kCIInputExtentKey: CIVector(cgRect: ciImage.extent)
-        ])
-        guard let outputImage = filter?.outputImage else { return }
-        var bitmap = [UInt8](repeating: 0, count: 4)
-        CIContext().render(outputImage, toBitmap: &bitmap, rowBytes: 4,
-                           bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
-                           format: .RGBA8, colorSpace: CGColorSpaceCreateDeviceRGB())
-        let r = CGFloat(bitmap[0]) / 255.0 * 0.55
-        let g = CGFloat(bitmap[1]) / 255.0 * 0.55
-        let b = CGFloat(bitmap[2]) / 255.0 * 0.55
-        DispatchQueue.main.async {
-            completion(Color(red: r, green: g, blue: b))
-        }
-    }
 }

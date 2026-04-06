@@ -41,18 +41,11 @@ struct MeditationPlayerView: View {
             // Background
             GeometryReader { geo in
                 if let urlString = coverUrl, let url = URL(string: urlString) {
-                    AsyncImage(url: url) { phase in
-                        switch phase {
-                        case .success(let image):
-                            image.resizable().scaledToFill()
-                                .frame(width: geo.size.width, height: geo.size.height)
-                                .clipped()
-                        default:
-                            localBackground(width: geo.size.width, height: geo.size.height)
-                        }
-                    }
+                    CachedAsyncImage(url: url)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .clipped()
                 } else {
-                    localBackground(width: geo.size.width, height: geo.size.height)
+                    areaColor(meditation.area)
                 }
             }
             .ignoresSafeArea()
@@ -102,7 +95,7 @@ struct MeditationPlayerView: View {
 
                 Spacer().frame(height: 8)
 
-                Text("\(Translations.lifeAreaLabel(meditation.area))  ·  \(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
+                Text("\(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
                     .font(AppTypography.bodyMedium)
                     .foregroundColor(.white.opacity(0.65))
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
