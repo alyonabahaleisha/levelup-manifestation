@@ -9,6 +9,8 @@ struct ContentView: View {
     @State private var pendingMoodKey: String? = nil
     @State private var pendingMeditation: Meditation? = nil
     @State private var isMeditationPlayerOpen = false
+    @State private var miniPlayerAtTop = false
+    @State private var miniPlayerDragOffset: CGFloat = 0
 
     private var showMiniPlayer: Bool {
         let state = meditationVM.playbackState
@@ -37,7 +39,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             TabView(selection: $selectedTab) {
                 HomeView(
                     savedProgramsVM: savedProgramsVM,
@@ -75,7 +77,7 @@ struct ContentView: View {
                     isMeditationPlayerOpen: $isMeditationPlayerOpen
                 )
                 .tabItem {
-                    Image(systemName: "moon.stars")
+                    Image(systemName: "wing")
                     Text(Translations.ui("meditationsTab"))
                 }
                 .tag(2)
@@ -105,21 +107,47 @@ struct ContentView: View {
             }
 
             if showMiniPlayer {
-                MiniPlayerView(
-                    title: meditationVM.currentTitle ?? "",
-                    contentType: meditationVM.contentType ?? .meditation,
-                    isPlaying: meditationVM.playbackState == .playing,
-                    isBuffering: meditationVM.playbackState == .buffering,
-                    progress: meditationVM.duration > 0 ? meditationVM.currentPosition / meditationVM.duration : 0,
-                    coverUrl: meditationVM.currentCoverUrl,
-                    onTogglePlayPause: { meditationVM.togglePlayPause() },
-                    onDismiss: { meditationVM.stop() },
-                    onClick: { handleMiniPlayerTap() }
-                )
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .padding(.bottom, 49) // above tab bar
+                VStack {
+                    if !miniPlayerAtTop { Spacer() }
+
+                    MiniPlayerView(
+                        title: meditationVM.currentTitle ?? "",
+                        contentType: meditationVM.contentType ?? .meditation,
+                        isPlaying: meditationVM.playbackState == .playing,
+                        isBuffering: meditationVM.playbackState == .buffering,
+                        progress: meditationVM.duration > 0 ? meditationVM.currentPosition / meditationVM.duration : 0,
+                        coverUrl: meditationVM.currentCoverUrl,
+                        onTogglePlayPause: { meditationVM.togglePlayPause() },
+                        onDismiss: { meditationVM.stop() },
+                        onClick: { handleMiniPlayerTap() }
+                    )
+                    .offset(y: miniPlayerDragOffset)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                miniPlayerDragOffset = value.translation.height
+                            }
+                            .onEnded { value in
+                                let threshold: CGFloat = 100
+                                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                    if miniPlayerAtTop && value.translation.height > threshold {
+                                        miniPlayerAtTop = false
+                                    } else if !miniPlayerAtTop && value.translation.height < -threshold {
+                                        miniPlayerAtTop = true
+                                    }
+                                    miniPlayerDragOffset = 0
+                                }
+                            }
+                    )
+                    .padding(.bottom, miniPlayerAtTop ? 0 : 49)
+                    .padding(.top, miniPlayerAtTop ? 4 : 0)
+
+                    if miniPlayerAtTop { Spacer() }
+                }
+                .transition(.opacity)
             }
         }
         .animation(.easeInOut(duration: 0.25), value: showMiniPlayer)
+        .animation(.spring(response: 0.35, dampingFraction: 0.8), value: miniPlayerAtTop)
     }
 }

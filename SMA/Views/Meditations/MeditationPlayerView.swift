@@ -173,23 +173,14 @@ struct MeditationPlayerView: View {
             GeometryReader { geo in
                 let trackWidth = geo.size.width
                 ZStack(alignment: .leading) {
-                    // Background track
                     Capsule()
                         .fill(Color.white.opacity(0.15))
                         .frame(height: 4)
 
-                    // Progress fill
                     Capsule()
-                        .fill(
-                            LinearGradient(
-                                colors: [ToneTheme.default.accent.opacity(0.8), ToneTheme.default.accent],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                        .fill(Color.white.opacity(0.6))
                         .frame(width: max(0, trackWidth * progress), height: 4)
 
-                    // Thumb
                     Circle()
                         .fill(Color.white)
                         .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 2)
