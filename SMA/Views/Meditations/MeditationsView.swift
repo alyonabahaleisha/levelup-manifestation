@@ -122,7 +122,7 @@ struct MeditationsView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 24)
-                .padding(.top, 60)
+                .padding(.top, 4)
                 .padding(.bottom, 4)
 
                 // Meditation list

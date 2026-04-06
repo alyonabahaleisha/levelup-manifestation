@@ -32,7 +32,6 @@ class Translations: @unchecked Sendable {
         do {
             db = Firestore.firestore()
         } catch {
-            print("Translations: Firebase not configured, skipping sync")
             return
         }
 
