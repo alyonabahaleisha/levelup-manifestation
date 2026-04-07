@@ -1,7 +1,7 @@
 import SwiftUI
 import Combine
 
-class MeditationViewModel: ObservableObject {
+class MusicViewModel: ObservableObject {
     private let audioManager = AudioPlayerManager.shared
     private let downloadManager = AudioDownloadManager.shared
     private var cancellables = Set<AnyCancellable>()
@@ -9,18 +9,18 @@ class MeditationViewModel: ObservableObject {
     @Published var playbackState: PlaybackState = .idle
     @Published var currentPosition: TimeInterval = 0
     @Published var duration: TimeInterval = 0
-    @Published var currentMeditationId: String?
+    @Published var currentTrackId: String?
     @Published var currentTitle: String?
     @Published var contentType: ContentType?
     @Published var currentCoverUrl: String?
     @Published var downloads: [String: DownloadState] = [:]
-    @AppStorage("last_meditation_id") var lastMeditationId: String = ""
+    @AppStorage("last_music_track_id") var lastTrackId: String = ""
 
     init() {
         audioManager.$playbackState.assign(to: &$playbackState)
         audioManager.$currentPosition.assign(to: &$currentPosition)
         audioManager.$duration.assign(to: &$duration)
-        audioManager.$currentMeditationId.assign(to: &$currentMeditationId)
+        audioManager.$currentMeditationId.assign(to: &$currentTrackId)
         audioManager.$currentTitle.assign(to: &$currentTitle)
         audioManager.$contentType.assign(to: &$contentType)
         audioManager.$currentCoverUrl.assign(to: &$currentCoverUrl)
@@ -30,22 +30,17 @@ class MeditationViewModel: ObservableObject {
     func downloadState(for id: String) -> DownloadState {
         downloadManager.downloadState(for: id)
     }
-    
-    func meditationsForArea(_ area: LifeArea) -> [Meditation] {
-        MeditationContent.meditations(area)
+
+    func allTracks() -> [MusicTrack] {
+        MusicContent.allTracks()
     }
-    
-    func allMeditations() -> [Meditation] {
-        MeditationContent.allMeditations()
+
+    func play(_ track: MusicTrack) {
+        let url = MusicContent.audioURL(track)
+        audioManager.play(meditationId: track.id, url: url, title: track.title, contentType: .music)
+        lastTrackId = track.id
     }
-    
-    func play(_ meditation: Meditation) {
-        let url = MeditationContent.audioURL(meditation)
-        let coverUrl = MeditationContent.coverURL(meditation)
-        audioManager.play(meditationId: meditation.id, url: url, title: meditation.title, contentType: .meditation, coverUrl: coverUrl)
-        lastMeditationId = meditation.id
-    }
-    
+
     func togglePlayPause() { audioManager.togglePlayPause() }
     func seekTo(_ seconds: TimeInterval) { audioManager.seekTo(seconds) }
     func stop() { audioManager.stop() }

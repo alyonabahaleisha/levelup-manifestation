@@ -25,6 +25,9 @@ struct SMAApp: App {
             .animation(.easeInOut(duration: 0.5), value: showSplash)
             .onAppear {
                 Translations.shared.load()
+                Translations.shared.onMeditationsLoaded = {
+                    ImageCache.shared.prefetchCovers()
+                }
                 Translations.shared.syncFromFirestore()
                 ImageCache.shared.prefetchCovers()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.4) {

@@ -10,6 +10,7 @@ struct MeditationPlayerView: View {
 
     @State private var isDragging = false
     @State private var dragProgress: Double = 0
+    @State private var sheetExpanded = false
 
     private var isActive: Bool {
         viewModel.currentMeditationId == meditation.id &&
@@ -38,7 +39,7 @@ struct MeditationPlayerView: View {
 
     var body: some View {
         ZStack {
-            // Background
+            // Layer 0: Background image
             GeometryReader { geo in
                 if let urlString = coverUrl, let url = URL(string: urlString) {
                     CachedAsyncImage(url: url)
@@ -50,7 +51,7 @@ struct MeditationPlayerView: View {
             }
             .ignoresSafeArea()
 
-            // Gradient overlay
+            // Layer 1: Gradient overlay
             LinearGradient(
                 stops: [
                     .init(color: .black.opacity(0.5), location: 0),
@@ -64,28 +65,13 @@ struct MeditationPlayerView: View {
             )
             .ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                // Back button
-                HStack {
-                    Button(action: onBack) {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(.white.opacity(0.85))
-                            .frame(width: 44, height: 44)
-                            .background(.ultraThinMaterial)
-                            .background(Color.white.opacity(0.08))
-                            .clipShape(Circle())
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 16)
-
+            // Layer 2: Fixed controls centered on screen
+            VStack {
                 Spacer()
 
                 // Title
                 Text(meditation.title)
-                    .font(AppTypography.headingLarge)
+                    .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
                     .shadow(color: .black.opacity(0.4), radius: 3, x: 0, y: 1)
                     .multilineTextAlignment(.center)
@@ -95,22 +81,16 @@ struct MeditationPlayerView: View {
 
                 Spacer().frame(height: 8)
 
+                // Duration label
                 Text("\(meditation.durationSeconds / 60) \(Translations.ui("minutesShort"))")
                     .font(AppTypography.bodyMedium)
                     .foregroundColor(.white.opacity(0.65))
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
 
-                Spacer().frame(height: 32)
+                Spacer().frame(height: 24)
 
-                // Seek bar with time labels
-                seekBarSection
-                    .padding(.horizontal, 32)
-
-                Spacer().frame(height: 32)
-
-                // Controls
+                // Playback controls
                 HStack(spacing: 32) {
-                    // Rewind 10s
                     Button {
                         if isActive { viewModel.seekTo(max(0, viewModel.currentPosition - 10)) }
                     } label: {
@@ -119,15 +99,38 @@ struct MeditationPlayerView: View {
                             .foregroundColor(.white.opacity(0.85))
                             .frame(width: 56, height: 56)
                             .background(.ultraThinMaterial)
-                            .background(Color.white.opacity(0.08))
+                            .background(Color.white.opacity(0.22))
                             .clipShape(Circle())
                     }
 
-                    // Play/Pause
                     Button {
                         if isActive { viewModel.togglePlayPause() } else { viewModel.play(meditation) }
                     } label: {
+                        let dlState: DownloadState = {
+                            let id = meditation.id
+                            if let state = viewModel.downloads[id] { return state }
+                            return AudioDownloadManager.shared.isDownloaded(id)
+                                ? DownloadState(status: .downloaded, progress: 1)
+                                : DownloadState()
+                        }()
+
                         ZStack {
+                            if dlState.status == .downloading {
+                                Circle()
+                                    .stroke(Color.white.opacity(0.15), lineWidth: 3)
+                                    .frame(width: 88, height: 88)
+                                Circle()
+                                    .trim(from: 0, to: dlState.progress)
+                                    .stroke(Color(hex: "B88AAE").opacity(0.90), style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                                    .rotationEffect(.degrees(-90))
+                                    .frame(width: 88, height: 88)
+                                    .animation(.linear(duration: 0.2), value: dlState.progress)
+                            } else if dlState.status == .downloaded {
+                                Circle()
+                                    .stroke(Color(hex: "B88AAE").opacity(0.30), lineWidth: 2)
+                                    .frame(width: 88, height: 88)
+                            }
+
                             Circle()
                                 .fill(.ultraThinMaterial)
                                 .overlay(Circle().fill(Color.white.opacity(0.12)))
@@ -146,7 +149,6 @@ struct MeditationPlayerView: View {
                         }
                     }
 
-                    // Forward 10s
                     Button {
                         if isActive { viewModel.seekTo(min(viewModel.duration, viewModel.currentPosition + 10)) }
                     } label: {
@@ -155,12 +157,115 @@ struct MeditationPlayerView: View {
                             .foregroundColor(.white.opacity(0.85))
                             .frame(width: 56, height: 56)
                             .background(.ultraThinMaterial)
-                            .background(Color.white.opacity(0.08))
+                            .background(Color.white.opacity(0.22))
                             .clipShape(Circle())
                     }
                 }
 
-                Spacer().frame(height: 48)
+                Spacer().frame(height: 32)
+
+                // Seek bar
+                seekBarSection
+                    .padding(.horizontal, 32)
+
+                Spacer()
+            }
+            .padding(.bottom, 120)
+
+            // Layer 3: Draggable bottom sheet (only when description exists)
+            if !meditation.description.isEmpty {
+                GeometryReader { geo in
+                    let sheetHeight: CGFloat = sheetExpanded ? geo.size.height * 0.6 : 120
+                    let safeBottom = geo.safeAreaInsets.bottom
+
+                    VStack(spacing: 0) {
+                        // Drag handle
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(Color.white.opacity(0.30))
+                            .frame(width: 40, height: 4)
+                            .padding(.top, 12)
+
+                        Spacer().frame(height: 12)
+
+                        // "Описание" label — always visible
+                        Text("Описание")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white.opacity(0.50))
+
+                        // Description content — visible only when expanded
+                        if sheetExpanded {
+                            Spacer().frame(height: 16)
+
+                            Rectangle()
+                                .fill(Color.white.opacity(0.12))
+                                .frame(height: 1)
+                                .padding(.horizontal, 24)
+
+                            Spacer().frame(height: 16)
+
+                            ScrollView(.vertical, showsIndicators: false) {
+                                Text(meditation.description)
+                                    .font(.system(size: 15, weight: .light))
+                                    .foregroundColor(.white.opacity(0.75))
+                                    .lineSpacing(9)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal, 24)
+                                    .padding(.bottom, safeBottom + 16)
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: sheetHeight + safeBottom)
+                    .background(Color(hex: "101820").opacity(0.92))
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 24,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 24
+                        )
+                    )
+                    .position(x: geo.size.width / 2, y: geo.size.height + geo.safeAreaInsets.bottom - (sheetHeight + safeBottom) / 2)
+                    .gesture(
+                        DragGesture(minimumDistance: 10)
+                            .onEnded { value in
+                                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                    if value.translation.height < -50 {
+                                        sheetExpanded = true
+                                    } else if value.translation.height > 50 {
+                                        sheetExpanded = false
+                                    }
+                                }
+                            }
+                    )
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                            sheetExpanded.toggle()
+                        }
+                    }
+                    .animation(.spring(response: 0.35, dampingFraction: 0.8), value: sheetExpanded)
+                }
+                .ignoresSafeArea()
+            }
+
+            // Layer 4: Back button — fixed top-left, respects safe area
+            VStack {
+                HStack {
+                    Button(action: onBack) {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundColor(.white.opacity(0.85))
+                            .frame(width: 44, height: 44)
+                            .background(.ultraThinMaterial)
+                            .background(Color.white.opacity(0.22))
+                            .clipShape(Circle())
+                    }
+                    Spacer()
+                }
+                .padding(.leading, 20)
+                .padding(.top, 8)
+                Spacer()
             }
         }
     }

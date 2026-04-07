@@ -34,6 +34,7 @@
 		67CE9A79B93CFF85F2610162 /* SMAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3CA4189963962D05888B80 /* SMAApp.swift */; };
 		681E42F4C3FEEFF934576E02 /* MusicContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB1CE746D15312A28F118C /* MusicContent.swift */; };
 		686D3499C88190AFBEF69BE3 /* card_bg_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D73D78B19FE9C6461C036D6 /* card_bg_4.jpg */; };
+		68DF8755524969120C9CB42C /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4761D6E5A4EF210743BBF5 /* ImageCache.swift */; };
 		6C17894983FFEE2732CD910D /* card_bg_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E53C6C119F44D78660B9978 /* card_bg_8.jpg */; };
 		6D89F3039050374676318FE5 /* card_bg_10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5203BEFA065E4EEA87B858B8 /* card_bg_10.jpg */; };
 		6DE42657C5EFB16F83C3A304 /* card_bg_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BB78B6D029EDB9024809F7B /* card_bg_2.jpg */; };
@@ -47,6 +48,7 @@
 		7B8EF8E09A4A03E138CE2638 /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353BC52CA51854041381C18 /* Translations.swift */; };
 		87CBDB12675CE03134EB27C6 /* playfair_display_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4125646D9BC6212F5C62E03D /* playfair_display_bold.ttf */; };
 		892FDED879DC20DBF1187F39 /* manrope_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C36C5421A4ED729FFD2379 /* manrope_semibold.ttf */; };
+		8E519E9C68A3E97464E55A20 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3631004507DEA0FE4C1BB2F /* MiniPlayerView.swift */; };
 		8FEA7944F06B5FB85431EB53 /* MeditationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8A9524080613A19EA065BC /* MeditationViewModel.swift */; };
 		99C0F5D60DFA25BCE5EE683B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */; };
 		A3D5185A40F1E8B1D1B586D0 /* bg_affirmations.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1493069238DB7B7D2EEE830 /* bg_affirmations.jpg */; };
@@ -66,6 +68,7 @@
 		E135520F2FAF065E6AB1B10C /* playfair_display_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 571B5CD0A1B5345F678552C5 /* playfair_display_regular.ttf */; };
 		E403C0A3E2E11674D9ED8CA7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99B3AC9123BD236F5B63D38 /* HomeView.swift */; };
 		E4431084ACE0F499F26C5368 /* bg_meditations.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D209D1FB8A949A1283058C3 /* bg_meditations.jpg */; };
+		E70D0A87BB5C332064ED8533 /* AudioDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB7F0F9556A98A2E4AEEA7F /* AudioDownloadManager.swift */; };
 		EF93BAA2FE634B75FC66E90E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93A98609DB149C59245BAFBA /* GoogleService-Info.plist */; };
 		F124D64754786E8E85CE7041 /* bg_home_top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0FE514614D6F1783FC226FE /* bg_home_top.jpg */; };
 		F54F4878407709CDD56A3E55 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 764F85A930C57309F1ECD492 /* app_icon.png */; };
@@ -117,6 +120,7 @@
 		A278E5BE43D4CD7BFF959690 /* SMA.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SMA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3330DA3A04C0F5273A66211 /* MeditationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsView.swift; sourceTree = "<group>"; };
 		A33F0182EC0B2203FF767A85 /* ClubsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsViewModel.swift; sourceTree = "<group>"; };
+		A3631004507DEA0FE4C1BB2F /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		A68543CBF8F94100B409D1D1 /* ClubAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubAnnotation.swift; sourceTree = "<group>"; };
 		ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubRepository.swift; sourceTree = "<group>"; };
 		B0FE514614D6F1783FC226FE /* bg_home_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_home_top.jpg; sourceTree = "<group>"; };
@@ -129,12 +133,14 @@
 		C99B3AC9123BD236F5B63D38 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CB746C76FCCC707570D0A2D5 /* mikhail_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mikhail_portrait.jpg; sourceTree = "<group>"; };
 		CF015A0505836824038C28AE /* logo_ageev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ageev.png; sourceTree = "<group>"; };
+		CFB7F0F9556A98A2E4AEEA7F /* AudioDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadManager.swift; sourceTree = "<group>"; };
 		D172A74E4AA93E2B11F68D0E /* card_bg_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_6.jpg; sourceTree = "<group>"; };
 		D2D93E90ECEA1DB834E8DC94 /* card_bg_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_5.jpg; sourceTree = "<group>"; };
 		D96C6C3E57589F5DFB0E5649 /* ClubsMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubsMapScreen.swift; sourceTree = "<group>"; };
 		E524691D415B1FB0866110FD /* card_bg_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_1.jpg; sourceTree = "<group>"; };
 		E7B28E5102F175DB2C65F996 /* card_bg_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_7.jpg; sourceTree = "<group>"; };
 		EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
+		EB4761D6E5A4EF210743BBF5 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		ED3E978C2FC2DE73BFAEC163 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC4270488DCBE3A3749C40E1 /* manrope_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_regular.ttf; sourceTree = "<group>"; };
 		FD2E25DC42588FDD65CF1784 /* bg_home.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_home.jpg; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 			children = (
 				7826A85F258FD78C556F1CEB /* AffirmationContent.swift */,
 				ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */,
+				EB4761D6E5A4EF210743BBF5 /* ImageCache.swift */,
 				9794D457AC27A2279179B6C9 /* MeditationContent.swift */,
 				24BB1CE746D15312A28F118C /* MusicContent.swift */,
 				16BC32DC00D026C6D2B7515B /* ProgramContent.swift */,
@@ -239,6 +246,7 @@
 		795BF19CDF0993C3BA0BA974 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				CFB7F0F9556A98A2E4AEEA7F /* AudioDownloadManager.swift */,
 				EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */,
 			);
 			path = Audio;
@@ -380,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				9D70FB479224DC8BC24BC2A8 /* ContentView.swift */,
+				A3631004507DEA0FE4C1BB2F /* MiniPlayerView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -509,6 +518,7 @@
 				0EBDA0A022A98A9928B156D8 /* AffirmationContent.swift in Sources */,
 				A976E06A58D30CD962EE5C86 /* AffirmationsView.swift in Sources */,
 				233CF522A6EB18C691CE50FC /* AppTheme.swift in Sources */,
+				E70D0A87BB5C332064ED8533 /* AudioDownloadManager.swift in Sources */,
 				5BF655439FC2E73998B0A246 /* AudioPlayerManager.swift in Sources */,
 				C0FBAC1FDF69484F2D878FD2 /* ClubAnnotation.swift in Sources */,
 				246DCB4FEF09A1FE2C320449 /* ClubMapView.swift in Sources */,
@@ -520,10 +530,12 @@
 				C6332D4147E8BAB9C3F3C851 /* GIFView.swift in Sources */,
 				39D07EDA3004D1E157D6C68D /* GlassComponents.swift in Sources */,
 				E403C0A3E2E11674D9ED8CA7 /* HomeView.swift in Sources */,
+				68DF8755524969120C9CB42C /* ImageCache.swift in Sources */,
 				2C6AA03CA5F2BADF85460B80 /* MeditationContent.swift in Sources */,
 				77CE975C44AE5F5994900589 /* MeditationPlayerView.swift in Sources */,
 				8FEA7944F06B5FB85431EB53 /* MeditationViewModel.swift in Sources */,
 				32B599B8F7CE3038CBE077EF /* MeditationsView.swift in Sources */,
+				8E519E9C68A3E97464E55A20 /* MiniPlayerView.swift in Sources */,
 				7AE1AD839BEB3E48057ED108 /* Models.swift in Sources */,
 				681E42F4C3FEEFF934576E02 /* MusicContent.swift in Sources */,
 				FD1DC40C4D70F68E1BEE107E /* MusicView.swift in Sources */,
@@ -577,7 +589,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -643,7 +655,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

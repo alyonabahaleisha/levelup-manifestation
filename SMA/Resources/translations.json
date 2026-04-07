@@ -21,10 +21,14 @@
       "moodCalm": "Покой",
       "moodEnergy": "Энергия",
       "moodLove": "Любовь",
-      "moodRelease": "Отпустить",
-      "moodTransform": "Трансформация",
+      "moodRelease": "Любовь к себе",
+      "moodTransform": "Перемены",
       "moodProtection": "Защита",
-      "moodShowAll": "Показать все",
+      "moodShowAll": "Все",
+      "meditationsCountLabel": "медитаций",
+      "musicTab": "Музыка",
+      "musicTitle": "Музыка",
+      "musicSubtitle": "Фоновая музыка для практик и медитаций",
       "allFilter": "Все",
       "yourIdentity": "Твоя Личность",
       "settingsTitle": "Настройки",
@@ -524,6 +528,11 @@
       "body": [
         { "id": "chakra_harmony_2", "title": "Гармонизация чакр", "description": "Выравнивание и очищение всех семи чакр для восстановления энергетического баланса", "fileName": "chakra_harmony.mp3", "durationSeconds": 2377 }
       ]
-    }
+    },
+    "music": [
+      { "id": "propitka_180", "title": "Пропитка 180 минут", "artist": "", "fileName": "propitka_180.mp3", "durationSeconds": 10822 },
+      { "id": "a_blessing", "title": "A Blessing", "artist": "Clifford White", "fileName": "a_blessing.mp3", "durationSeconds": 352 },
+      { "id": "sanctuary", "title": "Sanctuary", "artist": "Clifford White", "fileName": "sanctuary.mp3", "durationSeconds": 632 }
+    ]
   }
 }

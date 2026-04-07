@@ -6,15 +6,9 @@ struct ReprogramView: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { geo in
-                Image("bg_reprogram")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geo.size.width, height: geo.size.height)
-                    .clipped()
-            }
-            .ignoresSafeArea()
-            
+            Color(hex: "154C6C")
+                .ignoresSafeArea()
+
             if let area = selectedArea {
                 HiddenProgramsView(area: area, savedProgramsVM: savedProgramsVM) {
                     selectedArea = nil
@@ -68,7 +62,7 @@ struct ReprogramView: View {
                                 
                                 Text(Translations.lifeAreaLabel(area))
                                     .font(AppTypography.labelLarge)
-                                    .foregroundColor(Color(hex: "2A2A3A"))
+                                    .foregroundColor(.white)
                                 
                                 if savedCount > 0 {
                                     Text("\(savedCount) / \(totalCount)")
@@ -107,7 +101,7 @@ struct HiddenProgramsView: View {
                 Button(action: onBack) {
                     GlassCard(cornerRadius: 14) {
                         Image(systemName: "chevron.left")
-                            .foregroundColor(Color(hex: "5A5070"))
+                            .foregroundColor(.white.opacity(0.7))
                             .frame(width: 44, height: 44)
                     }
                 }
@@ -118,29 +112,29 @@ struct HiddenProgramsView: View {
             }
             .padding(.horizontal, 24)
             .padding(.top, 64)
-            
+
             Text(Translations.ui("hiddenProgramsSubtitle"))
                 .font(AppTypography.headingMedium)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
                 .padding(.bottom, 32)
-            
+
             ScrollView {
                 LazyVStack(spacing: 12) {
                     ForEach(programs) { program in
                         let isReprogrammed = savedProgramsVM.saved.contains { $0.text == program.rewrite }
-                        
+
                         GlassCard(cornerRadius: 18) {
                             HStack {
                                 Text(isReprogrammed ? program.rewrite : program.limiting)
                                     .font(AppTypography.bodyLarge)
-                                    .foregroundColor(isReprogrammed ? ToneTheme.default.accent : Color(hex: "2A2A3A").opacity(0.85))
-                                
+                                    .foregroundColor(isReprogrammed ? ToneTheme.default.accent : .white.opacity(0.85))
+
                                 Spacer()
-                                
+
                                 Image(systemName: isReprogrammed ? "checkmark.circle" : "chevron.right")
-                                    .foregroundColor(isReprogrammed ? ToneTheme.default.accent : Color(hex: "5A5070"))
+                                    .foregroundColor(isReprogrammed ? ToneTheme.default.accent : .white.opacity(0.7))
                             }
                             .padding(.horizontal, 20)
                             .padding(.vertical, 18)
@@ -172,21 +166,15 @@ struct ProgramRewriteView: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { geo in
-                Image("bg_reprogram")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geo.size.width, height: geo.size.height)
-                    .clipped()
-            }
-            .ignoresSafeArea()
-            
+            Color(hex: "154C6C")
+                .ignoresSafeArea()
+
             VStack(spacing: 0) {
                 HStack {
                     Button(action: { dismiss() }) {
                         GlassCard(cornerRadius: 14) {
                             Image(systemName: "chevron.left")
-                                .foregroundColor(Color(hex: "5A5070"))
+                                .foregroundColor(.white.opacity(0.7))
                                 .frame(width: 44, height: 44)
                         }
                     }
@@ -194,18 +182,18 @@ struct ProgramRewriteView: View {
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 20)
-                
+
                 Spacer()
-                
+
                 // Old program
                 GlassCard(cornerRadius: 22) {
                     VStack(spacing: 8) {
                         Text(Translations.ui("oldProgram"))
                             .font(AppTypography.labelSmall)
-                            .foregroundColor(Color(hex: "5A5070"))
+                            .foregroundColor(.white.opacity(0.55))
                         Text(program.limiting)
                             .font(AppTypography.headingSmall)
-                            .foregroundColor(Color(hex: "2A2A3A").opacity(showRewrite ? 0.3 : 0.7))
+                            .foregroundColor(.white.opacity(showRewrite ? 0.3 : 0.7))
                             .strikethrough(showRewrite)
                             .multilineTextAlignment(.center)
                     }
@@ -227,7 +215,7 @@ struct ProgramRewriteView: View {
                             .foregroundColor(ToneTheme.default.accent.opacity(0.7))
                         Text(program.rewrite)
                             .font(.custom("PlayfairDisplay-Regular", size: 20))
-                            .foregroundColor(Color(hex: "2A2A3A"))
+                            .foregroundColor(.white)
                             .multilineTextAlignment(.center)
                     }
                     .padding(28)
@@ -245,10 +233,10 @@ struct ProgramRewriteView: View {
                     GlassCard(cornerRadius: 18) {
                         HStack {
                             Image(systemName: isSaved ? "checkmark.circle" : "sparkles")
-                                .foregroundColor(isSaved ? ToneTheme.default.accent : Color(hex: "2A2A3A"))
+                                .foregroundColor(isSaved ? ToneTheme.default.accent : .white)
                             Text(isSaved ? Translations.ui("savedToIdentity") : Translations.ui("saveToIdentity"))
                                 .font(AppTypography.bodyLarge)
-                                .foregroundColor(isSaved ? ToneTheme.default.accent : Color(hex: "2A2A3A"))
+                                .foregroundColor(isSaved ? ToneTheme.default.accent : .white)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)

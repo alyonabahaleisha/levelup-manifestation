@@ -15,6 +15,7 @@ class Translations: @unchecked Sendable {
     private var remoteUiStrings: [String: String] = [:]
 
     private var listeners: [ListenerRegistration] = []
+    var onMeditationsLoaded: (() -> Void)?
 
     func load() {
         guard !loaded else { return }
@@ -83,6 +84,7 @@ class Translations: @unchecked Sendable {
                 byArea[area, default: []].append(raw)
             }
             self?.remoteMeditations = byArea
+            self?.onMeditationsLoaded?()
         })
 
         // Music

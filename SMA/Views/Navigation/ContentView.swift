@@ -77,7 +77,7 @@ struct ContentView: View {
                     isMeditationPlayerOpen: $isMeditationPlayerOpen
                 )
                 .tabItem {
-                    Image(systemName: "wing")
+                    Image(systemName: "moon.stars")
                     Text(Translations.ui("meditationsTab"))
                 }
                 .tag(2)

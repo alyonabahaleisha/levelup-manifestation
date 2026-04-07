@@ -16,6 +16,7 @@ struct MeditationsView: View {
     var initialMoodKey: String? = nil
     @Binding var pendingMeditation: Meditation?
     var onNavigateToHome: (() -> Void)? = nil
+    @Binding var isMeditationPlayerOpen: Bool
     @State private var selectedMeditation: Meditation?
     @State private var openedFromHome = false
 
@@ -55,6 +56,9 @@ struct MeditationsView: View {
                         openedFromHome = true
                         pendingMeditation = nil
                     }
+                }
+                .onChange(of: selectedMeditation) { _, newValue in
+                    isMeditationPlayerOpen = newValue != nil
                 }
                 .onAppear {
                     if let meditation = pendingMeditation {
@@ -196,7 +200,7 @@ private struct MeditationVisualCard: View {
                 endPoint: .bottom
             )
 
-            // Duration badge
+            // Top row: duration badge (right)
             VStack {
                 HStack {
                     Spacer()
@@ -253,3 +257,4 @@ private struct MeditationVisualCard: View {
     }
 
 }
+
