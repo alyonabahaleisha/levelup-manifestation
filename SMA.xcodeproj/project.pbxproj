@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05E01D2375201502C4056D76 /* bg_home.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FD2E25DC42588FDD65CF1784 /* bg_home.jpg */; };
 		06B7EF6C45652954F7FE5C17 /* bg_player.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44EAEB38B6DE3E869D37C531 /* bg_player.jpg */; };
+		0C4272C04835A57F85C37FEB /* MindsetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9515A524AA34FDA8EC659ED1 /* MindsetView.swift */; };
 		0D7E3C33BE1AD1D5D0EB9A8D /* card_bg_9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C017B144E32532CA46726DA1 /* card_bg_9.jpg */; };
 		0EBDA0A022A98A9928B156D8 /* AffirmationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826A85F258FD78C556F1CEB /* AffirmationContent.swift */; };
 		1FC4F9CCFF75214D1DF288AB /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */; };
@@ -28,6 +29,7 @@
 		484985A112F0133135B3386B /* mikhail_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB746C76FCCC707570D0A2D5 /* mikhail_portrait.jpg */; };
 		4AB31A11FB8FABAEA4BE8C67 /* ClubsMapSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2727326EFF6B9E51402C023 /* ClubsMapSection.swift */; };
 		4FA99AB49DD9458CF0FAA269 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8F7B7BE5969A5DC13FDA1FAA /* FirebaseFirestore */; };
+		54C33DF86372A934F711C785 /* MindsetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E2CB9A9B548DF61AAC7D8 /* MindsetContent.swift */; };
 		597675131AD73D09DCDD4141 /* ClubsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F0182EC0B2203FF767A85 /* ClubsViewModel.swift */; };
 		5BF655439FC2E73998B0A246 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9271DD70C3374B5C96084F /* AudioPlayerManager.swift */; };
 		6133B94D13196460C594EC23 /* playfair_display_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B884DAF1E9C9CAB58E734 /* playfair_display_semibold.ttf */; };
@@ -46,6 +48,7 @@
 		79EC8685AEC3F6B478812B9A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99119FEBC2B9EC8821B724 /* SplashView.swift */; };
 		7AE1AD839BEB3E48057ED108 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16A3E240AE5188035FF9239 /* Models.swift */; };
 		7B8EF8E09A4A03E138CE2638 /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353BC52CA51854041381C18 /* Translations.swift */; };
+		8587A50DABBF5228A30252D0 /* AffirmationTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD85FE63758C28B66A91835 /* AffirmationTheme.swift */; };
 		87CBDB12675CE03134EB27C6 /* playfair_display_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4125646D9BC6212F5C62E03D /* playfair_display_bold.ttf */; };
 		892FDED879DC20DBF1187F39 /* manrope_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C36C5421A4ED729FFD2379 /* manrope_semibold.ttf */; };
 		8E519E9C68A3E97464E55A20 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3631004507DEA0FE4C1BB2F /* MiniPlayerView.swift */; };
@@ -60,6 +63,7 @@
 		C6E87318CFD6CE0EC2970B0B /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FF8DFB9624C4C07835BD0 /* Typography.swift */; };
 		CC2A034C21E84E061DC034BC /* playfair_display_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 644581000B9C55DB4200DC3E /* playfair_display_medium.ttf */; };
 		D28647E0DB527A8696161936 /* manrope_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 961839537D7953F5976870BE /* manrope_bold.ttf */; };
+		D67CE6E4EED7EFC8D4D37025 /* AffirmationThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A10B5F711DE9A6ABBEC529 /* AffirmationThemePickerView.swift */; };
 		D960B4B39754024E6C734769 /* bg_reprogram.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A74643F22D5EADF07789D9D /* bg_reprogram.jpg */; };
 		DA4092269B00FC07A210E394 /* ProgramContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BC32DC00D026C6D2B7515B /* ProgramContent.swift */; };
 		DAA17D842E571AA2295D448A /* ReprogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA5699304C0F1838D4A708 /* ReprogramView.swift */; };
@@ -83,6 +87,7 @@
 		16BC32DC00D026C6D2B7515B /* ProgramContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramContent.swift; sourceTree = "<group>"; };
 		24BB1CE746D15312A28F118C /* MusicContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicContent.swift; sourceTree = "<group>"; };
 		27CA5699304C0F1838D4A708 /* ReprogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReprogramView.swift; sourceTree = "<group>"; };
+		294E2CB9A9B548DF61AAC7D8 /* MindsetContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetContent.swift; sourceTree = "<group>"; };
 		31F400E05964507F7757EC9F /* manrope_medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_medium.ttf; sourceTree = "<group>"; };
 		3E53C6C119F44D78660B9978 /* card_bg_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_8.jpg; sourceTree = "<group>"; };
 		4125646D9BC6212F5C62E03D /* playfair_display_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = playfair_display_bold.ttf; sourceTree = "<group>"; };
@@ -106,9 +111,11 @@
 		8A74643F22D5EADF07789D9D /* bg_reprogram.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_reprogram.jpg; sourceTree = "<group>"; };
 		8BB78B6D029EDB9024809F7B /* card_bg_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_2.jpg; sourceTree = "<group>"; };
 		8C3CA4189963962D05888B80 /* SMAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMAApp.swift; sourceTree = "<group>"; };
+		8CD85FE63758C28B66A91835 /* AffirmationTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationTheme.swift; sourceTree = "<group>"; };
 		904BEDD4E3751BBB14CA2239 /* MusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewModel.swift; sourceTree = "<group>"; };
 		9353BC52CA51854041381C18 /* Translations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
 		93A98609DB149C59245BAFBA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9515A524AA34FDA8EC659ED1 /* MindsetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetView.swift; sourceTree = "<group>"; };
 		961839537D7953F5976870BE /* manrope_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_bold.ttf; sourceTree = "<group>"; };
 		9794D457AC27A2279179B6C9 /* MeditationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationContent.swift; sourceTree = "<group>"; };
 		9AB8D00D5A54BDDCAA2CA73A /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
@@ -125,6 +132,7 @@
 		ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubRepository.swift; sourceTree = "<group>"; };
 		B0FE514614D6F1783FC226FE /* bg_home_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_home_top.jpg; sourceTree = "<group>"; };
 		B16A3E240AE5188035FF9239 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B5A10B5F711DE9A6ABBEC529 /* AffirmationThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffirmationThemePickerView.swift; sourceTree = "<group>"; };
 		B81FF8DFB9624C4C07835BD0 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		B9C36C5421A4ED729FFD2379 /* manrope_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = manrope_semibold.ttf; sourceTree = "<group>"; };
 		C017B144E32532CA46726DA1 /* card_bg_9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = card_bg_9.jpg; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 				7CF53C8A7747E5091F06C2FE /* Components */,
 				CA34F2D9CE8B823C244F202E /* Home */,
 				D5B21A157B304BAD1FE2DEBC /* Meditations */,
+				F9FDA749941086B98C3B4095 /* Mindset */,
 				C3227D0E74AD07A08142AB09 /* Music */,
 				E8CBBA0ED6D2352374F8F799 /* Navigation */,
 				B8842BEB69E8D2D268B2A57C /* Reprogram */,
@@ -224,6 +233,7 @@
 		5E543651577DDB3CBF92DD2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8CD85FE63758C28B66A91835 /* AffirmationTheme.swift */,
 				B16A3E240AE5188035FF9239 /* Models.swift */,
 			);
 			path = Models;
@@ -236,6 +246,7 @@
 				ABB4FE54777336CC7FB0DC34 /* ClubRepository.swift */,
 				EB4761D6E5A4EF210743BBF5 /* ImageCache.swift */,
 				9794D457AC27A2279179B6C9 /* MeditationContent.swift */,
+				294E2CB9A9B548DF61AAC7D8 /* MindsetContent.swift */,
 				24BB1CE746D15312A28F118C /* MusicContent.swift */,
 				16BC32DC00D026C6D2B7515B /* ProgramContent.swift */,
 				9353BC52CA51854041381C18 /* Translations.swift */,
@@ -264,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				59788D65BB0F279B7043786F /* AffirmationsView.swift */,
+				B5A10B5F711DE9A6ABBEC529 /* AffirmationThemePickerView.swift */,
 			);
 			path = Affirmations;
 			sourceTree = "<group>";
@@ -393,6 +405,14 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		F9FDA749941086B98C3B4095 /* Mindset */ = {
+			isa = PBXGroup;
+			children = (
+				9515A524AA34FDA8EC659ED1 /* MindsetView.swift */,
+			);
+			path = Mindset;
+			sourceTree = "<group>";
+		};
 		FAC9BA2F239532396D3ED680 /* SMA */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +536,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EBDA0A022A98A9928B156D8 /* AffirmationContent.swift in Sources */,
+				8587A50DABBF5228A30252D0 /* AffirmationTheme.swift in Sources */,
+				D67CE6E4EED7EFC8D4D37025 /* AffirmationThemePickerView.swift in Sources */,
 				A976E06A58D30CD962EE5C86 /* AffirmationsView.swift in Sources */,
 				233CF522A6EB18C691CE50FC /* AppTheme.swift in Sources */,
 				E70D0A87BB5C332064ED8533 /* AudioDownloadManager.swift in Sources */,
@@ -535,6 +557,8 @@
 				77CE975C44AE5F5994900589 /* MeditationPlayerView.swift in Sources */,
 				8FEA7944F06B5FB85431EB53 /* MeditationViewModel.swift in Sources */,
 				32B599B8F7CE3038CBE077EF /* MeditationsView.swift in Sources */,
+				54C33DF86372A934F711C785 /* MindsetContent.swift in Sources */,
+				0C4272C04835A57F85C37FEB /* MindsetView.swift in Sources */,
 				8E519E9C68A3E97464E55A20 /* MiniPlayerView.swift in Sources */,
 				7AE1AD839BEB3E48057ED108 /* Models.swift in Sources */,
 				681E42F4C3FEEFF934576E02 /* MusicContent.swift in Sources */,
@@ -589,7 +613,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -655,7 +679,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
